@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend> -->
+
+	<name>log4j</name>
+  	<groupId>log4j</groupId>
+  	<id>log4j</id>
+  	<currentVersion>1.2.8-osgi</currentVersion>
+
+	<shortDescription>Log4J Activator (one log4j per system)</shortDescription>
+
+  <properties>
+	<osgi.bundle.category>service</osgi.bundle.category>
+    <!--<osgi.bundle.activator>org.apache.log4j.osgi.Activator</osgi.bundle.activator>
+     see if it's necessary
+    <osgi.export.service>org.apache</osgi.export.service>
+    -->
+    
+    <osgi.import.package>org.osgi.framework</osgi.import.package>
+    
+  </properties>
+  
+   <dependencies>
+   
+        <dependency>
+            <groupId>osgi</groupId>
+            <artifactId>osgi-framework</artifactId>
+            <version>1.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        
+  </dependencies>
+  
+</project>
