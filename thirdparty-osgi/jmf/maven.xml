@@ -32,6 +32,10 @@
 				 includes="**" />
       </ant:copy>
       
+      <ant:copy 
+      	file="${basedir}/jmf-2.1.1e/lib/jmf.properties"
+      	todir="${maven.build.dir}/classes/" />
+      
 	 <attainGoal name="osgi:install"/>
 	
    </goal>
@@ -40,7 +44,10 @@
    
       <!-- <attainGoal name="java:compile"/> -->
       <ant:unjar src="${basedir}/jmf-alljava-2.1.1e/lib/jmf.jar" dest="${maven.build.dir}/classes"/>
-      
+      <ant:copy 
+      	file="${basedir}/jmf-alljava-2.1.1e/lib/jmf.properties"
+      	todir="${maven.build.dir}/classes/" />
+      	
 	 <attainGoal name="osgi:install"/>
 	
    </goal>
