@@ -17,6 +17,10 @@
 	    id="EndpointService"
             service="ch.ethz.jadab.jxme.EndpointService"
         />
+	
+	<Extension-Point
+	    id="Extension/id:Transport"
+	/>
 
     <ServiceActivatorBundle
         activator-uuid="jadabs:jxme-osgi:0.7.1-SNAPSHOT:obr"

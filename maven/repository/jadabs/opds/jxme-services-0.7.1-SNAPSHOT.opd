@@ -2,7 +2,7 @@
 <!DOCTYPE OSGiServicePlugin SYSTEM "D:\andfrei-nobkp\workspace\jadabs\docs\spec\dtd\OSGiPluginDescriptor.dtd">
 
 <OSGiServicePlugin 
-	uuid="jadabs:jxme-services:0.7.1-SNAPSHOT:opd"
+	uuid="jadabs:jxme-services-impl:0.7.1-SNAPSHOT:opd"
 	service="ch.ethz.jadabs.jxme.services" 
 	description="" 
 	provider-name="ETHZ-IKS">

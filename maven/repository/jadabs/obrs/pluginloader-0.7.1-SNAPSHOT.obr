@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>general</bundle-category>
-	<bundle-checksum>e5cc74c7245a4779517238299ca51613</bundle-checksum>
+	<bundle-checksum>581e1abc649b46345ef3651f619ce8d5</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.bundleLoader"/>
 	<import-package package="ch.ethz.jadabs.bundleLoader.api"/>
 	<import-package package="org.apache.log4j"/>

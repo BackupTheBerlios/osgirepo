@@ -16,6 +16,6 @@
 		service="ch.ethz.jadab.jxme.services.GroupService"/>
 
 	<ServiceActivatorBundle 
-		activator-uuid="jadabs:jadabs-maingui:0.7.1-SNAPSHOT"
+		activator-uuid="jadabs:jadabs-maingui:0.7.1-SNAPSHOT:obr"
 	/>		
 </OSGiServicePlugin>
