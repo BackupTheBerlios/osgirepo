@@ -11,4 +11,16 @@
 	
 	<shortDescription>kXML2</shortDescription>
   
+      <organization>
+        <name>kxml</name>
+        <url>http://kxml.kobjects.org</url>
+      </organization>
+  
+  	<properties>
+  		<obr.bundle.docurl>kxml.kobjects.org</obr.bundle.docurl>
+  		<obr.bundle.apivendor>XML</obr.bundle.apivendor>
+  		<osgi.bundle.vendor>kXML2</osgi.bundle.vendor>
+  		<osgi.bundle.category>Parser</osgi.bundle.category>
+ 	</properties>
+  
 </project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OSGiServicePlugin 
+	id="org.eclipse.swt" 
+	name="swt-linux"
+	group="swt"
+	version="3.0.1" 
+	description="" provider-name="Eclipse">
+	
+
+	<Extension-Point
+		id="Platform/os/linux" 
+		description="requires linux running"/>
+
+	<Extension
+		id="swt" 
+		description="provide swt library"/>
+
+	<ServiceActivatorBundle 
+		bundle-group="swt"
+		bundle-name="swt-linux" 
+		bundle-version="3.0.1-osgi" />
+		
+</OSGiServicePlugin>

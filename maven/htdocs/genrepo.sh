@@ -12,5 +12,11 @@ cat generation/repodate >> repository.xml
 
 find $DIR -name *.obr -print| xargs cat >> repository.xml
 
-cat generation/repofooter >> repository.xml
+#cat generation/repofooter >> repository.xml
 
+echo \<\/bundles\> >> repository.xml
+echo \<plugins\> >> repository.xml
+
+find $DIR -name *.opd -print| xargs cat >> repository.xml
+
+echo \<\/plugins\> >> repository.xml
