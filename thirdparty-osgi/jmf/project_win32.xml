@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+
+  	
+  	<groupId>jmf</groupId>
+  	<artifactId>jmf-win32</artifactId>
+  	
+  	<currentVersion>2.1.1e-osgi</currentVersion>
+
+	<name>jmf</name>
+	<shortDescription>JMF-Win32</shortDescription>
+
+  	<properties>
+    	<osgi.bundle.nativecode>/os/win32/x86/jmacm.dll;/os/win32/x86/jmam.dll;/os/win32/x86/jmcvid.dll;/os/win32/x86/jmdaud.dll;/os/win32/x86/jmdaudc.dll;/os/win32/x86/jmddraw.dll;/os/win32/x86/jmfjawt.dll;/os/win32/x86/jmg723.dll;/os/win32/x86/jmgdi.dll;/os/win32/x86/jmgsm.dll;/os/win32/x86/jmh261.dll;/os/win32/x86/jmh263enc.dll;/os/win32/x86/jmjpeg.dll;/os/win32/x86/jmmci.dll;/os/win32/x86/jmmpa.dll;/os/win32/x86/jmmpegv.dll;/os/win32/x86/jmutil.dll;/os/win32/x86/jmvcm.dll;/os/win32/x86/jmvfw.dll;/os/win32/x86/jmvh263.dll;/os/win32/x86/jsound.dll;processor=x86;osname=Windows XP;osname=WindowsNT</osgi.bundle.nativecode>
+  		<osgi.import.package></osgi.import.package>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

@@ -40,6 +40,28 @@
 	
    </goal>
       
+   <goal name="osgi:jmf-win32">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/jmf-win32-2.1.1e/lib/jmf.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/jmf-win32-2.1.1e/lib/mediaplayer.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/jmf-win32-2.1.1e/lib/multiplayer.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/jmf-win32-2.1.1e/lib/sound.jar" dest="${maven.build.dir}/classes"/>
+      
+      <ant:copy todir="${maven.build.dir}/classes/os">
+         <ant:fileset dir="${basedir}/jmf-win32-2.1.1e/os" 
+				 includes="**" />
+      </ant:copy>
+      
+      <!--
+      <ant:copy 
+      	file="${basedir}/jmf-win32-2.1.1e/lib/jmf.properties"
+      	todir="${maven.build.dir}/classes/" />-->
+      
+	 <attainGoal name="osgi:install"/>
+	
+   </goal>
+      
    <goal name="osgi:jmf-alljava">
    
       <!-- <attainGoal name="java:compile"/> -->
