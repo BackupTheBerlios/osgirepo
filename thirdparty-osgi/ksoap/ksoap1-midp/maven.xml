@@ -1,0 +1,21 @@
+<project default="osgi:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+  <preGoal name="jar:jar">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/ksoap-midp-1.2.jar" dest="${maven.build.dir}/classes"/>
+      	
+   </preGoal>
+   
+</project>

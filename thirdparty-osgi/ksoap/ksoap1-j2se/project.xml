@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  	
+  	<groupId>kobjects</groupId>
+  	<artifactId>ksoap1-j2se-osgi</artifactId>
+  	<currentVersion>1.2</currentVersion>
+
+	<name>kSOAP1-J2SE</name>
+	
+	<shortDescription>kSOAP1-J2SE</shortDescription>
+  
+</project>
