@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+   <pomVersion>3</pomVersion>
+    
+  	<groupId>cayenne</groupId>
+  	<artifactId>cayenne</artifactId>
+  	<currentVersion>1.1RC3-osgi</currentVersion>
+
+	<name>Cayenne</name>
+	<shortDescription>Cayenne is an Object Relational Mapping framework.</shortDescription>
+
+   <properties>
+   		<osgi.import.package></osgi.import.package>
+      <osgi.dynimport.package>*</osgi.dynimport.package>
+    </properties>
+
+</project>
