@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project>
+
+	<extend>${basedir}/../../../../../../project.xml</extend>
+
+	<artifactId>osgi-useradmin</artifactId>
+	<currentVersion>1.0</currentVersion>
+
+	<name>OSGi Service Useradmin</name>
+
+	<properties>
+		<osgi.bundle.category>osgi-service-api</osgi.bundle.category>
+	</properties>
+	
+	<dependencies>
+	
+		<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-framework</artifactId>
+      		<version>1.2</version>
+		</dependency>
+						
+	</dependencies>
+
+	<build>
+		<resources>
+	     	<resource>
+	        	<directory>${basedir}/../../../../../</directory>
+	            <includes>
+	                <include>copyright.txt</include>
+	            </includes>
+	        </resource>
+     	</resources>
+  	</build>
+  	
+</project>

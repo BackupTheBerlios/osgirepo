@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<extend>${basedir}/../../../project.xml</extend>
+
+	<groupId>osgi</groupId>
+	<artifactId>osgi-aop</artifactId>
+  	<name>OSGi-dAOP Extension</name>
+
+  	<shortDescription>OSGi dynamic AOP API</shortDescription>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>nanning</groupId>
+			<artifactId>nanning-core</artifactId>
+			<version>1.0-beta-1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>osgi</groupId>
+			<artifactId>osgi-framework</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+	</dependencies>
+
+</project>

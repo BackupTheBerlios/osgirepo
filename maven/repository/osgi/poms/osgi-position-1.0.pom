@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project>
+
+	<extend>${basedir}/../../../../../../project.xml</extend>
+
+	<artifactId>osgi-position</artifactId>
+	<currentVersion>1.0</currentVersion>
+
+	<name>OSGi Util Position</name>
+
+	<properties>
+		<osgi.bundle.category>osgi-util</osgi.bundle.category>
+	</properties>
+	
+	<dependencies>
+	
+		<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-measurement</artifactId>
+      		<version>1.0</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<resources>
+	     	<resource>
+	        	<directory>${basedir}/../../../../../</directory>
+	            <includes>
+	                <include>copyright.txt</include>
+	            </includes>
+	        </resource>
+     	</resources>
+  	</build>
+  	
+</project>

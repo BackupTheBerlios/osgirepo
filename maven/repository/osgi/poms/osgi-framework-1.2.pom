@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  <extend>${basedir}/../../../../../project.xml</extend>
+
+  <id>osgi-framework</id>
+  <name>OSGi Framework</name>
+  <package>org.osgi.framework</package>
+  <currentVersion>1.2</currentVersion>
+
+	<properties>
+		<osgi.bundle.category>framework</osgi.bundle.category>
+	</properties>
+
+	<build>
+		<resources>
+	     	<resource>
+	        	<directory>${basedir}/../../../../../</directory>
+	            <includes>
+	                <include>copyright.txt</include>
+	            </includes>
+	        </resource>
+     	</resources>
+  	</build>
+  	
+</project>

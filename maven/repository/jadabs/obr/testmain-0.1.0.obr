@@ -1,0 +1,31 @@
+<bundle>
+	<bundle-name>testmain</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-description>
+		TestMain
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<bundle-version>0.1.0</bundle-version>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/testmain-0.1.0.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		unknown
+	</bundle-sourceurl>
+	<bundle-docurl>
+		unknown
+	</bundle-docurl>
+	<bundle-category>General</bundle-category>
+	<bundle-checksum>68b90d5bfcb65c58dc5eb340cef34e40</bundle-checksum>
+	<import-package package="org.eclipse.swt.graphics"/>
+	<import-package package="org.eclipse.swt.widgets"/>
+	<import-package package="test"/>
+	<export-package package="test"/>
+	<dependencies>
+		<bundle>
+			<bundle-name>swt</bundle-name>
+			<bundle-group>swt</bundle-group>
+			<bundle-version>3.0.1-ppc</bundle-version>
+		</bundle>
+	</dependencies>
+</bundle>

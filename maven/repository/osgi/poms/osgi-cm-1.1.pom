@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  <extend>${basedir}/../../../../../../project.xml</extend>
+
+  <id>osgi-cm</id>
+  <name>OSGi Service CM</name>
+  
+  <package>org.osgi.service.cm</package>
+  
+  <currentVersion>1.1</currentVersion>
+
+	<properties>
+		<osgi.bundle.category>osgi-service-api</osgi.bundle.category>
+	</properties>
+
+  	<dependencies>
+		<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-framework</artifactId>
+      		<version>1.2</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<resources>
+	     	<resource>
+	        	<directory>${basedir}/../../../../../</directory>
+	            <includes>
+	                <include>copyright.txt</include>
+	            </includes>
+	        </resource>
+     	</resources>
+  	</build>
+  	
+</project>
