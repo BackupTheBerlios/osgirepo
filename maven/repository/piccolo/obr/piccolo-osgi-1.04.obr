@@ -1,0 +1,28 @@
+<bundle>
+	<bundle-name>piccolo-osgi</bundle-name>
+	<bundle-group>piccolo</bundle-group>
+	<bundle-version>1.04</bundle-version>
+	<bundle-uuid>piccolo:piccolo-osgi:1.04:</bundle-uuid>
+	<bundle-description>
+		Piccolo is a small, extremely fast XML parser for Java (SAX 1, SAX 2.0.1, and JAXP 1.1 (SAX parsing only)).
+	</bundle-description>
+	<bundle-apivendor>SAX</bundle-apivendor>
+	<bundle-vendor>Piccolo</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/piccolo/jars/piccolo-osgi-1.04.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		http://piccolo.sourceforge.net
+	</bundle-docurl>
+	<bundle-category>Parser</bundle-category>
+	<bundle-checksum>501f75c2ddda34caeaef9acf240049e8</bundle-checksum>
+	<export-package package="com.bluecast.io"/>
+	<export-package package="com.bluecast.util"/>
+	<export-package package="com.bluecast.xml"/>
+	<export-package package="javax.xml.parsers"/>
+	<export-package package="org.xml.sax"/>
+	<export-package package="org.xml.sax.ext"/>
+	<export-package package="org.xml.sax.helpers"/>
+</bundle>

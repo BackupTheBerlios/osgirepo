@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  	
+  	<groupId>piccolo</groupId>
+  	<artifactId>piccolo-osgi</artifactId>
+  	<currentVersion>1.04</currentVersion>
+
+	<name>Piccolo</name>
+	<shortDescription>Piccolo is a small, extremely fast XML parser for Java (SAX 1, SAX 2.0.1, and JAXP 1.1 (SAX parsing only)).</shortDescription>
+  
+    <organization>
+        <name>Piccolo</name>
+        <url>http://piccolo.sourceforge.net</url>
+      </organization>
+  
+  	<properties>
+  		<obr.bundle.docurl>piccolo.sourceforge.net</obr.bundle.docurl>
+  		<obr.bundle.apivendor>SAX</obr.bundle.apivendor>
+  		<osgi.bundle.vendor>Piccolo</osgi.bundle.vendor>
+  		<osgi.bundle.category>Parser</osgi.bundle.category>
+  		<osgi.dynimport.package>com.bluecast.xml.JAXPSAXParserFactory</osgi.dynimport.package>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+     <build>
+
+    	<sourceDirectory>${basedir}/src/</sourceDirectory>
+     
+  	</build>
+  	
+</project>

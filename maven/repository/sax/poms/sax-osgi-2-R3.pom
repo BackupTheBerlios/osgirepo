@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  	
+  	<groupId>sax</groupId>
+  	<artifactId>sax-osgi</artifactId>
+  	<currentVersion>2-R3</currentVersion>
+
+	<name>SAX</name>
+	<shortDescription>Simple API for XML</shortDescription>
+  
+    <organization>
+        <name>SAX</name>
+        <url>http://www.saxproject.org</url>
+      </organization>
+  
+  	<properties>
+  		<obr.bundle.docurl>www.saxproject.org</obr.bundle.docurl>
+  		<obr.bundle.apivendor>SAX</obr.bundle.apivendor>
+  		<osgi.bundle.vendor>SAX</osgi.bundle.vendor>
+  		<osgi.bundle.category>Parser</osgi.bundle.category>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+     <build>
+
+    	<sourceDirectory>${basedir}/src/</sourceDirectory>
+     
+  	</build>
+  	
+</project>
