@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+  	
+  	<groupId>jmf</groupId>
+  	<artifactId>jmf</artifactId>
+  	<currentVersion>2.1.1e</currentVersion>
+
+	<name>jmf</name>
+	<shortDescription>JMF</shortDescription>
+  
+  	<properties>
+  		<osgi.import.package></osgi.import.package>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

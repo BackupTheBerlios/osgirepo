@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+
+  	
+  	<groupId>jmf</groupId>
+  	<artifactId>jmf-alljava</artifactId>
+  	
+  	<currentVersion>2.1.1e-osgi</currentVersion>
+
+	<name>jmf</name>
+	<shortDescription>JMF-AllJava</shortDescription>
+
+  	<properties>
+    	<osgi.import.package></osgi.import.package>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+
+  	
+  	<groupId>jmf</groupId>
+  	<artifactId>jmf-linux</artifactId>
+  	
+  	<currentVersion>2.1.1e-osgi</currentVersion>
+
+	<name>jmf</name>
+	<shortDescription>JMF-Linux</shortDescription>
+
+  	<properties>
+    	<osgi.bundle.nativecode>/os/linux/x86/libjmcvid.so;/os/linux/x86/libjmdaud.so;/os/linux/x86/libjmfjawt.so;/os/linux/x86/libjmg723.so;/os/linux/x86/libjmgsm.so;/os/linux/x86/libjmh261.so;/os/linux/x86/libjmh263enc.so;/os/linux/x86/libjmjpeg.so;/os/linux/x86/libjmmpa.so;/os/linux/x86/libjmmpegv.so;/os/linux/x86/libjmmpx.so;/os/linux/x86/libjmutil.so;/os/linux/x86/libjmv4l.so;/os/linux/x86/libjmxlib.so;processor=x86;osname=Linux</osgi.bundle.nativecode>
+  		<osgi.import.package></osgi.import.package>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>
