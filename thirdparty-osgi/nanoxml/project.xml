@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  	
+  	<groupId>nanoxml</groupId>
+  	<artifactId>nanoxml-lite</artifactId>
+  	<currentVersion>2.2.3-osgi</currentVersion>
+
+	<name>Nanoxml</name>
+	<shortDescription>Nanoxml</shortDescription>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

@@ -1,0 +1,24 @@
+<project default="jar:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+  <goal name="osgi:nanoxml">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/nanoxml-lite-2.2.3.jar" dest="${maven.build.dir}/classes"/>
+      
+	 <attainGoal name="osgi:install"/>
+	
+   </goal>
+  	
+   
+</project>
