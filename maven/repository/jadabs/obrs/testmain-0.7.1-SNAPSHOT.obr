@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>general</bundle-category>
-	<bundle-checksum>01067545f59d7232a28ba0bbb805efdf</bundle-checksum>
+	<bundle-checksum>1f29f80ef27d9feeec598406c956ac2f</bundle-checksum>
 	<import-package package="org.eclipse.swt.widgets"/>
 	<export-package package="test"/>
 	<dependency-uuid>swt:swt:3.0.1-ppc:</dependency-uuid>

@@ -17,6 +17,6 @@
 		
 	</bundle-docurl>
 	<bundle-category>jxme</bundle-category>
-	<bundle-checksum>38711a917d9593c1cf19208659dcbbcf</bundle-checksum>
+	<bundle-checksum>ee86578ea41e1c538cae0a731b401504</bundle-checksum>
 	<export-package package="ch.ethz.jadabs.concurrent"/>
 </bundle>

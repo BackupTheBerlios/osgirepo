@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>gui</bundle-category>
-	<bundle-checksum>c3dfd4b32262937714c73086b921b3ce</bundle-checksum>
+	<bundle-checksum>c09eafdccc56ebbbc10156002bf0d268</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>
 	<import-package package="ch.ethz.jadabs.remotefw"/>
 	<import-package package="org.apache.log4j"/>

@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>test</bundle-category>
-	<bundle-checksum>354288d4573db79a7e239d528e1a5f70</bundle-checksum>
+	<bundle-checksum>364103b3b844cbf6ea80bd406a2d5710</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>
 	<import-package package="org.osgi.framework"/>

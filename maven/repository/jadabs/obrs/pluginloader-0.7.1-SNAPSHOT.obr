@@ -17,13 +17,12 @@
 		
 	</bundle-docurl>
 	<bundle-category>general</bundle-category>
-	<bundle-checksum>6b21adbcaee21652b24b9701d25cabc2</bundle-checksum>
+	<bundle-checksum>e5cc74c7245a4779517238299ca51613</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.bundleLoader"/>
 	<import-package package="ch.ethz.jadabs.bundleLoader.api"/>
 	<import-package package="org.apache.log4j"/>
 	<import-package package="org.kxml2.io"/>
 	<import-package package="org.osgi.framework"/>
-	<import-package package="org.xmlpull.v1"/>
 	<export-package package="ch.ethz.jadabs.pluginLoader"/>
 	<export-package package="ch.ethz.jadabs.pluginLoader.api"/>
 	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>

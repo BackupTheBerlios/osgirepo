@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>jxme</bundle-category>
-	<bundle-checksum>89701d5c255516f372680d54e737886b</bundle-checksum>
+	<bundle-checksum>4cdd3aff77a6a9d7a4d124fd4b38f04d</bundle-checksum>
 	<dependency-uuid>jadabs:jxme-osgi:0.7.1-SNAPSHOT:</dependency-uuid>
 	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
 </bundle>

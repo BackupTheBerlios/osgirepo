@@ -7,7 +7,7 @@
 	provider-name="Eclipse">	
 
 	<Extension-Point
-		id="os/type:linux" 
+		id="Property/name:os, value:linux" 
 		description="requires linux running"/>
 
 	<Extension

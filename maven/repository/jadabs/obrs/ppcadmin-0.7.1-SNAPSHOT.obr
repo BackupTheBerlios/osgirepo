@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>general</bundle-category>
-	<bundle-checksum>0643874b1e340d60e62e16dbcefa7142</bundle-checksum>
+	<bundle-checksum>b4247a7e49b1341afcf8ff6135a8d915</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.remotefw"/>
 	<import-package package="org.apache.log4j"/>
 	<import-package package="org.eclipse.swt.events"/>

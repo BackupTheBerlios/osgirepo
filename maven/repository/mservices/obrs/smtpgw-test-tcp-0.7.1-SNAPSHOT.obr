@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>mservices-test</bundle-category>
-	<bundle-checksum>9e0fea9e4e5732407e8c9fcb5afd15e6</bundle-checksum>
+	<bundle-checksum>cc3a96940f224c7575267b0794b9525f</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="ch.ethz.jadabs.mservices.smtpgw.testtcp"/>

@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>shell</bundle-category>
-	<bundle-checksum>fdde8ae1f78e3f8a8a2783e2ac7e5ea2</bundle-checksum>
+	<bundle-checksum>447c30a52b9ad1b0cda7c06bad3aab74</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.bundleLoader.api"/>
 	<import-package package="org.apache.log4j"/>
 	<import-package package="org.osgi.framework"/>

@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>jxme-test</bundle-category>
-	<bundle-checksum>fcf3855e5567e2e7712a9e0e15190416</bundle-checksum>
+	<bundle-checksum>5db8bbc3dde3fbd1bc83f6109e2dc002</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="junit.framework"/>
 	<import-package package="org.apache.log4j"/>

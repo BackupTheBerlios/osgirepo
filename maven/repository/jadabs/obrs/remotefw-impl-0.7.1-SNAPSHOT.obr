@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>remotefw</bundle-category>
-	<bundle-checksum>619e5fb268e872cbed1afe5991471bed</bundle-checksum>
+	<bundle-checksum>54319e8cba3804d3c3ab458ba0502e0d</bundle-checksum>
 	<import-package package="JSX"/>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>

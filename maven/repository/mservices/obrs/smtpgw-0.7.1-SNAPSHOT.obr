@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>mservices</bundle-category>
-	<bundle-checksum>154e35a669a149c617004eb09f491b7e</bundle-checksum>
+	<bundle-checksum>820b42aa95f74f42205c5c7df7eaec0f</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="javax.mail"/>
 	<import-package package="javax.mail.internet"/>

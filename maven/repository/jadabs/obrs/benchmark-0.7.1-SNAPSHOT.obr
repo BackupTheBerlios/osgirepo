@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>general</bundle-category>
-	<bundle-checksum>4025786e07c3f456ed86f82bb39c0582</bundle-checksum>
+	<bundle-checksum>fb85979ca642954b19cf6858cbbe333a</bundle-checksum>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="ch.ethz.iks.benchmark"/>
 	<export-package package="ch.ethz.iks.bunit"/>

@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>logging</bundle-category>
-	<bundle-checksum>773758fe84e1989dbf439493144f2c82</bundle-checksum>
+	<bundle-checksum>dbdfce43fd7ba899cfc805b1c2b66e54</bundle-checksum>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="org.apache.log4j"/>
 	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>

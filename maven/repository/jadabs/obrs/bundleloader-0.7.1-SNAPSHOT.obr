@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>general</bundle-category>
-	<bundle-checksum>91c7474e55ca04678c5e57cf4f571e48</bundle-checksum>
+	<bundle-checksum>c3974783f301a62f4ed37b910957f245</bundle-checksum>
 	<import-package package="org.apache.log4j"/>
 	<import-package package="org.kxml2.io"/>
 	<import-package package="org.osgi.framework"/>

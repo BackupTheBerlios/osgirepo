@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>mservices</bundle-category>
-	<bundle-checksum>33ff1678a0d3021b016a7a90943f2498</bundle-checksum>
+	<bundle-checksum>a2def32f12b6a675e9bb62b5cd809913</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>
 	<import-package package="org.apache.log4j"/>

@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>mservices-test</bundle-category>
-	<bundle-checksum>8b0eca0e0105c236a42eddc704b8343e</bundle-checksum>
+	<bundle-checksum>fdcd30cfd14437db687c196839e6a300</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme.im"/>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>
 	<import-package package="org.osgi.framework"/>

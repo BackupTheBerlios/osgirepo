@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>jxme-test</bundle-category>
-	<bundle-checksum>e3d856c4f5812d58627dd79390171c76</bundle-checksum>
+	<bundle-checksum>2b124c84f0fcfc67096cdffc9b68ccb1</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>
 	<import-package package="org.apache.log4j"/>

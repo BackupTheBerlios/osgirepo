@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>remotefw</bundle-category>
-	<bundle-checksum>88fc77b93e8139a093d780fe3770263b</bundle-checksum>
+	<bundle-checksum>843e15f0c7870dd638987ba87cecae8c</bundle-checksum>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="ch.ethz.jadabs.remotefw"/>
 	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>

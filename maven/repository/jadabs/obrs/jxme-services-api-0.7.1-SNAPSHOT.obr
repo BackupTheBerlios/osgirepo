@@ -17,7 +17,7 @@
 		
 	</bundle-docurl>
 	<bundle-category>jxme</bundle-category>
-	<bundle-checksum>2988e7b75f89b9d513d18ef85f350f82</bundle-checksum>
+	<bundle-checksum>18ea4aa3ecc0954e491ccbdba86c4bfc</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<export-package package="ch.ethz.jadabs.jxme.services"/>
 	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
