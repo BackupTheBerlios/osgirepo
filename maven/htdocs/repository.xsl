@@ -185,6 +185,9 @@ Further Repositories:
 
 <!-- stop -->
 
+<p>
+Site template taken from Knopflerfish.org.
+</p>
 	    <a class="top" href="#top">top</a>
 	    </div>
 	  </td>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="repository.xsl"?>
+
+
+<bundles>
+ <repository-bundle-name>OSGi-Repository</repository-bundle-name>
+ <date>
