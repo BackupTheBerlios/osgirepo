@@ -1,0 +1,32 @@
+<project default="jar:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+  <goal name="osgi:kxml">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/kxml2-2.1.9.jar" dest="${maven.build.dir}/classes"/>
+      
+	 <attainGoal name="osgi:install"/>
+	
+   </goal>
+  	
+   <goal name="osgi:kxml-min">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/kxml2-min-2.1.9.jar" dest="${maven.build.dir}/classes"/>
+      
+	 <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+</project>
