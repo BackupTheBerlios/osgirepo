@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+
+  	
+  	<groupId>swt</groupId>
+  	<!--<articatId>swt</articatId>-->
+  	<id>swt</id>
+  	<currentVersion>3.0RC1-osgi</currentVersion>
+
+	<package>org.eclipse.swt</package>
+
+	<name>swt</name>
+	<shortDescription>Eclipse-SWT Generic (without natives)</shortDescription>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

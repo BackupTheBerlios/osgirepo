@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+
+  	
+  	<groupId>swt</groupId>
+  	<!--<articatId>swt</articatId>-->
+  	<id>swt</id>
+  	<package>org.eclipse.swt</package>
+  	
+  	<currentVersion>3.0RC1-linux-osgi</currentVersion>
+
+	<name>swt</name>
+	<shortDescription>Eclipse-SWT Linux GTK</shortDescription>
+
+  <properties>
+    <osgi.bundle.nativecode>/os/linux/x86/libswt-atk-gtk-3054.so;/os/linux/x86/libswt-awt-gtk-3054.so;/os/linux/x86/libswt-gnome-gtk-3054.so;/os/linux/x86/libswt-gtk-3054.so;/os/linux/x86/libswt-mozilla-gtk-3054.so;/os/linux/x86/libswt-pi-gtk-3054.so;processor=x86;osname=Linux</osgi.bundle.nativecode>
+
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

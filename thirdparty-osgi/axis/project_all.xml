@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  	<groupId>axis</groupId>
+  	<id>axis-all</id>
+  	
+  	<currentVersion>1.2alpha-osgi</currentVersion>
+
+	<name>axis</name>
+	<shortDescription>Axis-all for OSGi</shortDescription>
+
+  	<properties>
+    	<!--
+    	<osgi.import.package>com.sun.jimi.core,com.sun.net.ssl,com.sun.net.ssl.internal.ssl,javax.activation,javax.jms,javax.mail,javax.mail.internet,javax.net,javax.net.ssl,javax.servlet,javax.servlet.http,org.apache.commons.discovery.resource.classes,org.apache.log,org.apache.log4j,test.wsdl.import2.types</osgi.import.package>
+    	-->
+    	<osgi.import.package>org.apache.log4j</osgi.import.package>
+  	</properties>
+  
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

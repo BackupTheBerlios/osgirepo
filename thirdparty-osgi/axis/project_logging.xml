@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+ 	
+  	<groupId>axis</groupId>
+  	<id>commons-logging-axis</id>
+  	
+  	<currentVersion>1.2alpha</currentVersion>
+
+	<name>commons-logging-axis</name>
+	<shortDescription>commons-logging-axis</shortDescription>
+
+  <properties>
+  
+    <osgi.export.package>org.apache.commons.logging,org.apache.commons.logging.impl</osgi.export.package>
+    <osgi.import.package></osgi.import.package>
+    <osgi.dynimport.package>*</osgi.dynimport.package>
+    <!--<osgi.import.package>org.apache.log,org.apache.log4j</osgi.import.package>
+	-->
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

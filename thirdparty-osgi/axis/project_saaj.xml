@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+ 	
+  	<groupId>axis</groupId>
+  	<articatId>saaj-axis</articatId>
+  	<id>saaj-axis</id>
+  	
+  	<currentVersion>1.2alpha</currentVersion>
+
+	<name>axis</name>
+	<shortDescription>SAAJ-axis</shortDescription>
+
+  <properties>
+  
+    <osgi.export.package>javax.xml.soap</osgi.export.package>
+    <osgi.import.package></osgi.import.package>
+	<!-- osgi.import.package: javax.activation -->
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

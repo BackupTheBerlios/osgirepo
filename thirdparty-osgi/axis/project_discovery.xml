@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+ 	
+  	<groupId>axis</groupId>
+  	<id>commons-discovery-axis</id>
+  	
+  	<currentVersion>1.2alpha</currentVersion>
+
+	<name>commons-discovery-axis</name>
+	<shortDescription>commons-discovery-axis</shortDescription>
+
+  <properties>
+  
+    <osgi.export.package>org.apache.commons.discovery,org.apache.commons.discovery.ant,org.apache.commons.discovery.jdk,org.apache.commons.discovery.log,org.apache.commons.discovery.resource,org.apache.commons.discovery.resource.names,org.apache.commons.discovery.tools</osgi.export.package>
+    <osgi.import.package>org.apache.commons.discovery.resource.classes,org.apache.commons.logging</osgi.import.package>
+
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

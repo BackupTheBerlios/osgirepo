@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+ 	
+  	<groupId>axis</groupId>
+  	<articatId>jaxrpc-axis</articatId>
+  	<id>jaxrpc-axis</id>
+  	
+  	<currentVersion>1.2alpha</currentVersion>
+
+	<name>axis</name>
+	<shortDescription>axis</shortDescription>
+
+  <properties>
+  
+    <osgi.export.package>javax.xml.messaging,javax.xml.namespace,javax.xml.rpc,javax.xml.rpc.encoding,javax.xml.rpc.handler,javax.xml.rpc.handler.soap,javax.xml.rpc.holders,javax.xml.rpc.server,javax.xml.rpc.soap,javax.xml.transform,javax.xml.transform.dom,javax.xml.transform.sax,javax.xml.transform.stream</osgi.export.package>
+    <osgi.import.package>javax.xml.soap</osgi.import.package>
+	<!-- osgi.import.package: javax.servlet,javax.servlet.http, -->
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend> -->
+
+	<name>j2me-btapi</name>
+  	<groupId>j2me</groupId>
+  	<id>btapi</id>
+  	<currentVersion>1.0</currentVersion>
+
+	<shortDescription>J2ME BT-API JSR-82 1.0</shortDescription>
+  
+   	<dependencies>
+   	
+   	    <dependency>
+            <groupId>j2me</groupId>
+            <artifactId>cldcapi</artifactId>
+            <version>1.0</version>
+        </dependency>
+   
+        <dependency>
+            <groupId>j2me</groupId>
+            <artifactId>midpapi</artifactId>
+            <version>2.0</version>
+        </dependency>
+        
+  	</dependencies>
+  
+  
+    <build>
+
+    	<sourceDirectory>${basedir}/src/</sourceDirectory>
+     
+  	</build>
+  
+</project>

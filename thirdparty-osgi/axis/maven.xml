@@ -1,0 +1,79 @@
+<project default="jar:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+
+  	<goal name="osgi:all">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/libs/jaxrpc-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/libs/saaj-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/libs/wsdl4j-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/libs/commons-logging-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/libs/commons-discovery-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+  	<goal name="osgi:axis">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+
+  <goal name="osgi:jaxrpc">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/jaxrpc-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+   <goal name="osgi:saaj">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/saaj-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+  
+   <goal name="osgi:wsdl4j">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/wsdl4j-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+   <goal name="osgi:logging">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/commons-logging-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+   <goal name="osgi:discovery">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/libs/commons-discovery-axis-1.2alpha.jar" dest="${maven.build.dir}/classes"/>
+      
+	  <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+</project>

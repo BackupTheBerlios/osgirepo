@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend>-->
+
+  	
+  	<groupId>swt</groupId>
+  	<!--<articatId>swt</articatId>-->
+  	<id>swt</id>
+  	<currentVersion>3.0-macosx-osgi</currentVersion>
+
+	<name>swt</name>
+	<shortDescription>Eclipse-SWT MacOSX</shortDescription>
+
+  <properties>
+    <osgi.bundle.nativecode>/os/macosx/ppc/java_swt;/os/macosx/ppc/libswt-carbon-3062.jnilib;/os/macosx/ppc/libswt-pi-carbon-3062.jnilib;/os/macosx/ppc/libswt-webkit-carbon-3062.jnilib;processor=ppc;processor=powerpc;processor=PowerPC;osname=macosx;osname=macos;osname=mac;osname=MacOS;osname=Mac OS;osname=Mac OS X;osname=MacOSX</osgi.bundle.nativecode>
+    
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+ 	
+  	<groupId>axis</groupId>
+  	<id>wsdl4j-axis</id>
+  	
+  	<currentVersion>1.2alpha</currentVersion>
+
+	<name>wsdl4j-axis</name>
+	<shortDescription>wsdl4j-axis</shortDescription>
+
+  <properties>
+  
+    <osgi.export.package>com.ibm.wsdl,com.ibm.wsdl.extensions,com.ibm.wsdl.extensions.http,com.ibm.wsdl.extensions.mime,com.ibm.wsdl.extensions.soap,com.ibm.wsdl.factory,com.ibm.wsdl.util,com.ibm.wsdl.util.xml,com.ibm.wsdl.xml,javax.wsdl,javax.wsdl.extensions,javax.wsdl.extensions.http,javax.wsdl.extensions.mime,javax.wsdl.extensions.soap,javax.wsdl.factory,javax.wsdl.xml</osgi.export.package>
+    <osgi.import.package>javax.xml.namespace</osgi.import.package>
+
+  </properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+</project>
