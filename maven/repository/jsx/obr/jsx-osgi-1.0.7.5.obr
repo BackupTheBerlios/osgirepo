@@ -1,0 +1,23 @@
+<bundle>
+	<bundle-name>jsx-osgi</bundle-name>
+	<bundle-group>jsx</bundle-group>
+	<bundle-version>1.0.7.5</bundle-version>
+	<bundle-uuid>jsx:jsx-osgi:1.0.7.5:</bundle-uuid>
+	<bundle-description>
+		JSX1 free version
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>null</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jsx/jars/jsx-osgi-1.0.7.5.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		null
+	</bundle-sourceurl>
+	<bundle-docurl>
+		null
+	</bundle-docurl>
+	<bundle-category>serialization</bundle-category>
+	<bundle-checksum>34fd37b3634eb4d9d484a3e15b833c63</bundle-checksum>
+	<export-package package="JSX"/>
+	<export-package package="JSX.magic"/>
+</bundle>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend> -->
+
+	<name>JSX2</name>
+  	<groupId>jsx</groupId>
+  	<artifactId>jsx-osgi</artifactId>
+  	<currentVersion>2.2.3.8</currentVersion>
+
+	<shortDescription>JSX2</shortDescription>
+
+  <properties>
+	<osgi.bundle.category>serialization</osgi.bundle.category>  
+	<osgi.dynimport.package>*</osgi.dynimport.package> 
+  </properties>
+  
+   <dependencies>
+   
+        
+  </dependencies>
+  
+</project>

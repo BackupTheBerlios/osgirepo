@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend> -->
+
+	<name>JSX1-free</name>
+  	<groupId>jsx</groupId>
+  	<artifactId>jsx-osgi</artifactId>
+  	<currentVersion>1.0.7.5</currentVersion>
+
+	<shortDescription>JSX1 free version</shortDescription>
+
+  <properties>
+	<osgi.bundle.category>serialization</osgi.bundle.category>
+	<osgi.import.package>ch.ethz.jadabs.remotefw</osgi.import.package>   
+	<osgi.dynimport.package>*</osgi.dynimport.package> 
+  </properties>
+  
+   <dependencies>
+   
+        
+  </dependencies>
+  
+</project>
