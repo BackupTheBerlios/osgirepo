@@ -1,0 +1,23 @@
+<project default="jar:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+  <goal name="osgi:ksoap">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/dist/ksoap2-j2me-full.jar" dest="${maven.build.dir}/classes"/>
+      
+	 <attainGoal name="osgi:install"/>
+	
+   </goal>
+   
+</project>
