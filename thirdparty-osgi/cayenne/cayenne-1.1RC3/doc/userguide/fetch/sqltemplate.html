@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Using SelectQueries</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">7. Using Queries</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    7.6 SQLTemplate Query<br>
+    </strong><br>
+                                    <p>Not all features of SQL can (or should) be mapped in the object model in terms of DataObjects. For such cases 
+            Cayenne provides a powerful mechanism for running both selecting and non-selecting SQL using scriptable <a href="../../api/cayenne/org/objectstyle/cayenne/query/SQLTemplate.html">SQLTemplate query</a>. This chapter 
+            describes how simple SQLTemplates can be created and executed with DataContext to select or update
+            the database data. Subsequent chapters show how to build SQL dynamically, bind parameters and describe result sets
+            using SQLTemplate scripting features.</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Note:</b> <br>
+In Cayenne 1.0 executing SQL directly was done via SqlSelectQuery and SqlModifyQuery. 
+            These classes didn't provide adequate support for building dynamic parameterized SQL, and are now deprecated
+             in favor of SQLTemplate.
+            <br></td>
+  </tr>
+</table>
+                                                        
+    <strong><br>
+    7.6.1 Creating SQLTemplate<br>
+    </strong><br>
+                                    <p>While SQLTemplates can be built using CayenneModeler <i>[not there yet, coming soon...]</i>, creating them in
+            the code is just as easy as regular SelectQueries. SQLTemplate consists of root and dynamic template string.
+            Dynamic behavior of the template is discussed in subsequent chapters, for now it is sufficient to know that the template string 
+            is simply a valid SQL statement in the target database SQL dialect. Note that one of the parameters in SQLTemplate constructor 
+            is a boolean specifying whether the query is expected to return the result or not.
+            </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+import org.objectstyle.cayenne.query.SQLTemplate;
+...
+// create selecting SQLTemplate
+SQLTemplate selectQuery = new SQLTemplate(Artist.class, "select * from ARTIST", true);
+...
+// create updating SQLTemplate
+SQLTemplate updateQuery = new SQLTemplate(Artist.class, "delete from ARTIST", false);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.6.2 Selecting Objects with SQLTemplate<br>
+    </strong><br>
+                                    <p>Selecting SQLTemplate is very similar to SelectQuery in many respects. It can be executed via <code>DataContext.performQuery(..)</code>
+		and supports the same configuration parameters, such as fetch limit, pagination, etc. It can be configured to return DataObjects (default) 
+		or data rows.</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+import org.objectstyle.cayenne.query.SQLTemplate;
+...
+// fetch all artists, but no more than 1000 objects...
+SQLTemplate rawSelect = new SQLTemplate(Artist.class, "select * from ARTIST", true);
+rawSelect.setFetchLimit(1000);
+
+List artists = dataContext.performQuery(rawSelect);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.6.3 Modifying Data with SQLTemplate<br>
+    </strong><br>
+                                    <p>Non-selecting SQLTemplate allows to execute arbitrary SQL that modifies the database, but does not return the results.
+		<code>DataContext.performNonSelectingQuery(..)</code> is used for this task.
+		</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Important!</b> <br>
+Developers making database changes via SQLTemplate must realize that these changes
+		are done directly to the database, bypassing ObjectStore, and therefore may potentially leave object graph in an inconsistent state.
+		<br></td>
+  </tr>
+</table>
+                                                <p> </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+import org.objectstyle.cayenne.query.SQLTemplate;
+...
+// fetch all artists, but no more than 1000 objects...
+SQLTemplate rawDelete = new SQLTemplate(Artist.class, "delete from ARTIST", false);
+int[] deleteCounts = dataContext.performNonSelectingQuery(rawDelete);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.6.4 Customizing SQL Dialects<br>
+    </strong><br>
+                                    <p>Even though SQL is an industry standard, different DB vendors still have their own dialects and
+		extensions. Two versions of the same query written for Oracle and PostgreSQL may look quiet 
+		different.</p>
+                                                <p>Each SQLTemplate query has a default template, usually set in constructor. Internally it also keeps a map of alternative templates. 
+		This map normally uses a fully-qualified class name of the target DbAdapter as a key. This way Cayenne can determine which one of the
+		SQL strings to use during the execution. Alternative SQL strings are configured using <code>SQLTemplate.setTemplate(...)</code>: 
+		</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// build template with default SQL
+SQLTemplate query = new SQLTemplate(Artist.class, "select * from ARTIST", true);
+
+// for Postgres it would be nice to trim the CHAR ARTIST_NAME column 
+// or otherwise it will be returned padded with spaces
+String pgTemplate = "SELECT ARTIST_ID, RTRIM(ARTIST_NAME), DATE_OF_BIRTH FROM ARTIST";
+query.setTemplate(PostgresAdapter.class.getName(), pgTemplate);
+</pre></td>
+  </tr>
+</table>   
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/fetch/selectquery.html" class="body-white-small">7.1 SelectQuery</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/exp.html" class="body-white-small">7.2 Qualifier Expressions</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/orderings.html" class="body-white-small">7.3 Using Orderings</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/other.html" class="body-white-small">7.4 SelectQuery Customization</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/params.html" class="body-white-small">7.5 Parameterized Queries</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/sqltemplate.html" class="body-white-small">7.6 SQLTemplate Query</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/sqltemplate-scripting.html" class="body-white-small">7.7 Scripting SQLTemplate</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/datamap-queries.html" class="body-white-small">7.8 Queries Stored in DataMap</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/result-caching.html" class="body-white-small">7.9 Caching Query Results</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Using SelectQueries</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">7. Using Queries</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    7.5 Parameterized Queries<br>
+    </strong><br>
+                                    <p>SelectQuery objects can be rather complex. They may contain long qualifiers
+    	and lots of tuning parameters. <i>Parameterized Queries</i> feature addresses reusability 
+    	of complex queries. With this feature, for each group of queries that differ only in the values 
+    	used in the qualifier, a developer may create a single shared "prototype" or "template" query, 
+    	and use it later 
+    	as a factory for other queries. All settings configured in the prototype object will be passed to 
+    	the final queries. Qualifier of the prototype query may use named parameters that are substituted 
+    	for real values when a final query is created from the prototype.
+		</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Note:</b> <br>
+"Prototype" queries are normally created in CayenneModeler and stored
+		in the DataMap XML file. "Queries Stored in DataMap" chapter describes how to use such 
+		templates. This chapter shows how to create them on the spot using the API calls.<br></td>
+  </tr>
+</table>
+                                                <p>Building a prototype query using <code>Expression.fromString(..)</code>:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>import org.objectstyle.cayenne.exp.Expression;
+import org.objectstyle.cayenne.query.SelectQuery;
+...
+// create a qualifier with two named parameters: "pname" and "aname"
+Expression qual = Expression.fromString("paintingTitle = $pname or toArtist.artistName = $aname");
+
+// build a query prototype of a query - simply another select query
+SelectQuery proto = new SelectQuery(Painting.class, qual);
+proto.setDistinct(true);
+</pre></td>
+  </tr>
+</table>   
+                                                <p>Same example but using <code>ExpressionFactory</code>:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>import java.util.*;
+import org.objectstyle.cayenne.exp.Expression;
+import org.objectstyle.cayenne.exp.ExpressionFactory;
+import org.objectstyle.cayenne.exp.ExpressionParameter;
+import org.objectstyle.cayenne.query.SelectQuery;
+...
+// create a qualifier with two named parameters: 
+//  "pname" and "aname"
+List list = new ArrayList();
+list.add(ExpressionFactory.matchExp("paintingTitle", 
+         new ExpressionParameter("pname")));
+list.add(ExpressionFactory.matchExp("toArtist.artistName", 
+         new ExpressionParameter("aname")));
+Expression qual = ExpressionFactory.joinExp(Expression.OR, list);
+
+// build a query prototype of a query - simply another select query
+SelectQuery proto = new SelectQuery(Painting.class, qual);
+proto.setDistinct(true);
+</pre></td>
+  </tr>
+</table>   
+                                                <p>Prototype built in the example above can be used to create other queries. Relevalnt API is:</p>
+                                                <ul>
+			<li>public SelectQuery <b>SelectQuery.queryWithParameters</b>(Map parameters, boolean pruneMissing)<br />
+            Creates and returns a new SelectQuery using current query as a prototype. Map of 
+            parameters is used to substitute named parameters in the qualifier with the real values.
+            Returned query is a separate instance and can be further customized without affecting the prototype. 
+            
+			<p>If <code>pruneMissing</code> is <code>true</code> and some of the named parameters are missing
+            from the parameters map, Cayenne would prune expressions that can not be resolved.
+            If <code>pruneMissing</code> is set to <code>false</code>, the method would throw an exception
+            unless all the named parameters can be resolved.</p>
+            <p />
+            </li>
+            
+			<li>public SelectQuery <b>SelectQuery.queryWithParameters</b>(Map parameters)<br />
+            A shortcut for <code>public SelectQuery queryWithParameters(Map parameters, true)</code>.
+            <p />
+            </li>
+        </ul>
+                                                <p>Example of using <code>queryWithParameters</code> is shown below:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>import java.util.Map;
+import java.util.HashMap;
+import org.objectstyle.cayenne.query.SelectQuery;
+...
+SelectQuery proto = ... // this was built in the example above
+
+// create a query
+Map params1 = new HashMap();
+params1.put("aname", "Dali");
+SelectQuery query1 = proto.queryWithParameters(params1);
+
+// further customize returned query 
+// without affecting the prototype
+query1.setFetchLimit(100);
+... 
+// create another query with a different set of parameters
+Map params2 = new HashMap();
+params2.put("aname", "Monet");
+params2.put("pname", "The Beach at Trouville");
+SelectQuery query2 = proto.queryWithParameters(params2);
+... 
+</pre></td>
+  </tr>
+</table>   
+                                                </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/fetch/selectquery.html" class="body-white-small">7.1 SelectQuery</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/exp.html" class="body-white-small">7.2 Qualifier Expressions</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/orderings.html" class="body-white-small">7.3 Using Orderings</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/other.html" class="body-white-small">7.4 SelectQuery Customization</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/params.html" class="body-white-small">7.5 Parameterized Queries</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/sqltemplate.html" class="body-white-small">7.6 SQLTemplate Query</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/sqltemplate-scripting.html" class="body-white-small">7.7 Scripting SQLTemplate</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/datamap-queries.html" class="body-white-small">7.8 Queries Stored in DataMap</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/result-caching.html" class="body-white-small">7.9 Caching Query Results</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

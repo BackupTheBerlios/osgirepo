@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Introduction</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">1. Introduction</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    1.1 Guide to 1.1 Features<br>
+    </strong><br>
+                                    <p>Cayenne version 1.1 introduces a large number of new features and enhancements
+        	over 1.0. This chapter lists most of them, providing the links to more detailed 
+        	information about each feature.</p>
+                                                        
+    <strong><br>
+    1.1.1 DTD Additions.<br>
+    </strong><br>
+                                    <p>"cayenne.xml" and "*.map.xml" file formats were updated to support new features. 1.1 DTD files
+        	are located here:</p>
+                                                <ul>
+           	 	<li><a href="../../dtd/cayenne-project-1_1.dtd">cayenne-project-1_1.dtd</a></li>
+            	<li><a href="../../dtd/cayenne-data-map-1_1.dtd">cayenne-data-map-1_1.dtd</a></li>
+            </ul>
+                                                <p>Upgrade Warning: be careful - saving projects with CayenneModeler v.1.1 will render them uneditable 
+            with CayenneModeler v.1.0.</p>
+                                                                            
+    <strong><br>
+    1.1.2 Advanced Local and Distributed Caching<br>
+    </strong><br>
+                                    <p>Cayenne now provides a way to share its object cache between DataContexts in the same
+            JVM and across JVMs. The following chapters in the user guide describe this feature:</p>
+                                                <ul>
+           	 	<li><a href="../design/dataobjects-datarows.html">How Information Is Stored in Cayenne</a></li>
+            		<li><a href="../design/caching.html">Understanding Caching</a></li>
+            		<li><a href="../fetch/result-caching.html">Caching Query Result Lists</a></li>
+            		<li><a href="../perform/caching-lookup.html">Caching Lookup Tables</a></li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.3 Optimistic Locking<br>
+    </strong><br>
+                                    <p>ObjAttributes and ObjRelationships can be marked to be used for "optimistic" locking.
+            If an corresponding columns of the underlying database row are externally modified, an attempt
+            to save an object results in OptimisticLockingException.</p>
+                                                                            
+    <strong><br>
+    1.1.4 DataObjectUtils - an easy way to map objects by PK<br>
+    </strong><br>
+                                    <p><a href="../dataobjects/dataobjectutils.html">DataObjectUtils</a> is an often requested 
+            feature for easy retrieval of an object primary key, or locating an object for a known key. 
+            It works in a generic way for any type of DataObjects, even if a PK is not a class property.</p>
+                                                                            
+    <strong><br>
+    1.1.5 Entity Inheritance<br>
+    </strong><br>
+                                    <p>Cayenne now supports entity inheritance for entities rooted in the same DB table (single 
+            table inheritance).</p>
+                                                                            
+    <strong><br>
+    1.1.6 Data Views and DVModeler<br>
+    </strong><br>
+                                    <p><a href="../dataview/index.html">Data Views</a> is a completely new addition to Cayenne. 
+            This is a framework and a Swing modeler tool to quickly build Swing applications based on 
+            Cayenne.</p>
+                                                                            
+    <strong><br>
+    1.1.7 Generic Multithreaded and Distributed Events Mechanism<br>
+    </strong><br>
+                                    <p>Cayenne now includes a <a href="../design/events.html">generic package</a> 
+            "org.objectstyle.cayenne.event" for registering listeners 
+            and sending events, both locally and remotely. It supports both blocking and non-blocking
+            listeners and dispatches. Supported remote transports include JMS and JavaGroups.</p>
+                                                                            
+    <strong><br>
+    1.1.8 DataObjects Validation<br>
+    </strong><br>
+                                    <p>DataContext now performs validation of DataObjects before committing them.
+            There is a set of default validation checks being executed, based on the DataMap
+            information. Developers can override DataObject validation methods to provide custom 
+            validation checks.</p>
+                                                <p>See user guide <a href="../dataobjects/validation.html">chapter on object validation</a>.</p>
+                                                <p>Original implementation was submitted by Fabricio Voznika.</p>
+                                                                            
+    <strong><br>
+    1.1.9 Expression API Enhancements<br>
+    </strong><br>
+                                    <p>There is a new expression parser that allows creation of complex expressions from 
+            strings ("Expression.fromString(..)"). This greatly reduces the amount of code needed to build an
+            expression. 
+            </p>
+                                                <p>
+            In-memory evaluation API is improved, and now supports 
+            both boolean conditions (via "Expression.match" method) and generic expressions evaluation 
+            (via "Expression.evaluate" method), it also includes support for arithmetic operations.</p>
+                                                <ul>
+            <li><a href="../expressions/common.html">Expressions</a></li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.10 SQLTemplate - A Dynamic Raw SQL Query<br>
+    </strong><br>
+                                    <p>SQLTemplate replaces SqlSelectQuery and SqlModifyQuery and is a scriptable
+            parameterized raw SQL query. It supports DataObjects and other features declared
+            in GenericSelectQuery interface.
+            </p>
+                                                <ul>
+            <li><a href="../fetch/sqltemplate.html">SQLTemplate Overview</a></li>
+            <li><a href="../fetch/sqltemplate-scripting.html">SQLTemplate Scripting</a></li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.11 DataContext API for Running Parameterized Named Queries<br>
+    </strong><br>
+                                    <p>DataContext now provides simple API to run SelectQuery, SQLTemplate and ProcedureQuery
+            by name if such queries are mapped via CayenneModeler:</p>
+                                                <ul>
+            <li><a href="../datactxt/performquery.html">DataContext Query API Overview</a></li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.12 Support for Shared Mapping Namespace<br>
+    </strong><br>
+                                    <p>DataDomain now provides a shared mapping namespace. This means that all mapping 
+            objects can reference other mapping objects outside their DataMaps. For example two DbEntities
+            can be located in different DataMaps and still have relationships to each other.</p>
+                                                <p>Temporary limitation of the shared mapping namespace is that Queries stored in the DataMap 
+            can't have a "root"  from a different DataMap.</p>
+                                                                            
+    <strong><br>
+    1.1.13 SnapshotEvents<br>
+    </strong><br>
+                                    <p />
+                                                                            
+    <strong><br>
+    1.1.14 DataContextDelegate<br>
+    </strong><br>
+                                    <p />
+                                                                            
+    <strong><br>
+    1.1.15 Entity Restricting Qualifier <br>
+    </strong><br>
+                                    <p>ObjEntities now can hold a qualifier expression that is automatically appended to any 
+            query qualifiers, thus creating a global data filter for a given entity. This feature is used for
+            inheritance mapping, however it has nothing to do with inheritance as such and can be used
+            all by itself.</p>
+                                                                            
+    <strong><br>
+    1.1.16 Explicit Transaction API and Container Managed Transactions<br>
+    </strong><br>
+                                    <p>Cayenne now supports container-managed transactions. As a result it can be used inside EJBs
+            out of the box. It also allows a high degree of transactions customization. The following user guide 
+            chapter explains Transactions design and behavior in details:</p>
+                                                <ul>
+            <li><a href="../design/transactions.html">Understanding Transactions</a></li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.17 Various Performance Enhancements<br>
+    </strong><br>
+                                    <ul>
+            	<li>Lazy Relationship Creation - when new objects are fetched, their relationships
+            	are not initialized immediately; a Fault singleton is used isntead as a placeholder.
+            	Of course in the past Cayenne also had "lazy" relationships, meaning that they didn't
+            	get resolved via a DB query until accessed. Current optimization goes further -
+            	it prevents a number of Java objects (such as empty Lists for to-many relationship, or
+            	"hollow" DataObjects for to-ones)
+            	from being created until absolutely necessary.</li>
+            	
+            	<li>To-many relationships do not have to be fully resolved on modification - if an 
+            	unresolved to-many
+            	relationship is modified (i.e. an object is added or removed from it), it is
+            	not resolved until the next "read" (i.e. until a call to "size()" or "iterator()" method).
+            	This is especially helpful with bi-directional one-to-many relationships.
+            	E.g. "painting.addToArtist(artist)" used to trigger the fetch of all paintings
+            	that belong to an artist. Not anymore.</li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.18 More Databases Have Custom DbAdapters<br>
+    </strong><br>
+                                    <p>Cayenne features new database adapters:</p>
+                                                <ul>
+            	<li>OpenBase Adapter</li>
+            	<li>MS SQL Server Adapter</li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.19 Support for To-One Relationships Not Pointing to a PK.<br>
+    </strong><br>
+                                    <p>Added support for one-to-one relationships between PK and non-PK columns
+            of related tables. In the past this could only be modeled as one-to-many. CayenneModeler
+            will create UNIQUE constraint for a non-PK columns during schema generation.</p>
+                                                                            
+    <strong><br>
+    1.1.20 Support for Queries in DataMap DTD.<br>
+    </strong><br>
+                                    <p>Queries are made first-class mapping objects. They can be modeled in CayenneModeler 
+            and stored in DataMaps. Application code can then reuse such queries.
+            </p>
+                                                <ul>
+             	<li><a href="../../modelerguide/modeling-queries/index.html">Mapping Queries</a></li>
+           	 	<li><a href="../fetch/datamap-queries.html">Using Mapped Queries</a></li>
+            </ul>
+                                                                            
+    <strong><br>
+    1.1.21 Non-refreshing Select Queries<br>
+    </strong><br>
+                                    <p />
+                                                                            
+    <strong><br>
+    1.1.22 CayenneModeler Enhancements.<br>
+    </strong><br>
+                                    <p>The following is an incomplete list of enhancements: new professional look and feel, preference engine,
+            reenginnering of stored procedures, local DataSources, configurable locations of JDBC drivers, custom 
+            class generation templates, etc.  A number of Modeler tasks and dialogs have been redesigned and improved 
+            to be more user-friendly and consistent. </p>
+                                                <p>Also CayenneModeler supports mapping of all the new 1.1 framework features, such as DataMap queries,
+            cache synchronization configuration, etc.
+            </p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/introduction/whats-new.html" class="body-white-small">1.1 Guide to 1.1 Features</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/introduction/acknowledgements.html" class="body-white-small">1.2 Acknowledgements</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/introduction/license.html" class="body-white-small">1.3 License</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

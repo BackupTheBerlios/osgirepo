@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Miscellaneous Information</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">14. Miscellaneous Information</font>
+            <img src="../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                              <p>This section contains information not directly related to 
+    	Cayenne development, but still important in the context of this 
+    	User Guide.</p>
+                                                        <a name="webobjects"></a>
+        
+    <strong><br>
+    14.1 Cayenne and WebObjects<br>
+    </strong><br>
+                                    <p>For those who have never heard what WebObjects is, here is a little
+            introduction. WebObjects is one of the first and one of the best
+            web application development frameworks. It was created by NeXT (now
+            Apple) in the mid 90's and from the very beginning captured the essense 
+            of web application development needs. There are two areas of WebObjects 
+            strength: presentation layer and database access layer.
+            It hasn't been surpassed in both of these areas even now.
+            Surprisingly, main reason for that is its relative obscurity.</p>
+                                                <p>Mainstream Java world went the hard way and invented a lot of
+            different solutions to solve 2 basic issues mentioned above: presentation
+            (servlets, JSP) and database access (JDBC). "Standard" Java technologies 
+            can get the job done. The only thing they lack is convenience and 
+            elegance of WebObjects. In short, there is a hard way to do things and there
+            is a WebObjects way.</p>
+                                                <p>To learn more about WebObjects, go to <a href="http://webobjects.com/">
+            webobjects.com</a>.</p>
+                                                <p>So, how is Cayenne related to that? Cayenne's goal was to fill one of the 
+            gaps that mainstream Java world has. Namely object-oriented way to access databases.
+            We used patterns found in WebObjects data layer (EOF) and combined it with 
+            the latest Java technologies to create an opensource database solution
+            for any kind of Java applications.</p>
+                                                        <a name="terms"></a>
+        
+    <strong><br>
+    14.1.1 Terms Translation<br>
+    </strong><br>
+                                    <p>Some design patterns used in Cayenne may be familiar to the EOF folk. 
+            This section is intended to make Cayenne understanding 
+            easier if you have WebObjects/EOF background. Below Cayenne 
+            terms are defined in WebObjects terms whenever it is possible.</p>
+                                                <p><cite>DataNode</cite> : EOAdaptor</p>
+                                                <p><cite>DataDomain</cite> : EOObjectStoreCoordinator</p>
+                                                <p><cite>DataContext</cite> : EOEditingContext</p>
+                                                <p><cite>DataObject</cite> : EOEnterpriseObject</p>
+                                                <p><cite>DataMap</cite> : EOModel</p>
+                                                <p><cite>ObjEntity + DbEntity</cite> : EOEntity</p>
+                                                <p><cite>ObjRelationship + DbRelationship</cite> : EORelationship</p>
+                                                <p><cite>ObjAttribute + DbAttribute</cite> : EOAttribute</p>
+                                                <p><cite>SelectQuery</cite> : EOFetchSpecification</p>
+                                                <p><cite>InsertQuery, DeleteQuery, UpdateQuery</cite> :
+            no WebObjects analogue, closest thing is 
+            com.webobjects.eoaccess.EODatabaseOperation</p>
+                                                <p><cite>Expression </cite>: EOQualifier</p>
+                                                <p><cite>Ordering</cite> : EOSortOrdering</p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../userguide/misc.html" class="body-white-small">14.1 Cayenne and WebObjects</a>
+<br>
+       		   
+       		          		       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

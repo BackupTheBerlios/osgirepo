@@ -1,0 +1,450 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Using SelectQueries</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">7. Using Queries</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    7.7 Scripting SQLTemplate<br>
+    </strong><br>
+                                    <p>SQLTemplate's internal SQL string is a dynamic script that is processed at runtime to generate 
+		PreparedStatement SQL code. Dynamic nature of SQLTemplate makes possible a few important things - it allows 
+		to bind parameters on the fly; it provides a way to pass extra information to Cayenne that is not included
+		in the SQL text; it supports including/excluding chunks of SQL depending on runtime parameters.
+		</p>
+                                                <p>Scripting of SQL strings is done using <a href="http://jakarta.apache.org/velocity" target="_blank">Jakarta
+		Velocity</a>. Velocity was chosen primarily for its concise template language (no XML tags within SQL!) that doesn't
+		conflict with the SQL syntax. When creating dynamic SQL template, all standard Velocity directives are available,
+		including <code>#set, #foreach, #if</code>.
+		However due to the nature of the SQL and the need to integrate it with Cayenne runtime, only a few Cayenne 
+		custom directives are normally used. These directives (<code>#bind..., #result, #chain, #chunk</code>) are described below.</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Directive Syntax Note</b> <br>
+Velocity directives start with pound sign (#) and have their parameters 
+		separated by space, not comma. E.g. #bind('SOMESTRING' 'VARCHAR').
+		<br></td>
+  </tr>
+</table>
+                                                <p> </p>
+                                                        
+    <strong><br>
+    7.7.1 Named Parameters<br>
+    </strong><br>
+                                    <p><code>SQLTemplate.setParameters(java.util.Map)</code> allows setting 
+		a number of named parameters that are used to build parts of the query. During template processing by Velocity all keys in the parameters
+		map are available as variables. For example if the map contains a key "name", its value can be referenced as "$name" in the template.
+		Value of the parameter will be insterted in the SQL unmodified:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// build SQLTemplate
+String sql = "delete from $tableName";
+SQLTemplate delete = new SQLTemplate(Artist.class, sql, false);
+...
+// this will create a query "delete from ARTIST"
+update.setParameters(Collections.singletonMap("tableName", "ARTIST"));
+...
+// this will create a query "delete from PAINTING"
+update.setParameters(Collections.singletonMap("tableName", "PAINTING"));
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.7.2 Describing the Results - #result Directive<br>
+    </strong><br>
+                                    <p><code>#result</code> directive is used in selecting SQLTemplates to quickly map an arbitrary ResultSet to a DataObject
+		(or a data row with known keys), and also to control Java types of result values. #result directive has a variable number of
+		arguments:</p>
+                                                <ul>
+ 		<li><code>#result(columnName)</code> - e.g. #result('ARTIST_NAME')</li>
+ 		<li><code>#result(columnName javaType)</code> - e.g. #result('DATE_OF_BIRTH' 'java.util.Date')</li>
+ 		<li><code>#result(columnName javaType columnAlias)</code> - e.g. #result('DATE_OF_BIRTH' 'java.util.Date' 'DOB') - in this case
+ 		returned data row will use "DOB" instead of "DATE_OF_BIRTH" for the result value.</li>
+ 		</ul>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Java Type Note:</b> <br>
+Generally "javaType" argument is a fully-qualified Java class name for a given
+		result column. However for simplicity most common Java types used in JDBC can be specified without 
+		a package. These include all numeric types, primitives, String, SQL dates, BigDecimal and BigInteger.
+		So "#result('A' 'String')", "#result('B' 'java.lang.String')" and "#result('C' 'int')" are all valid.
+		<br></td>
+  </tr>
+</table>
+                                                <p>While "select * from" queries may work just fine, in most cases it is a good idea to explicitly describe results.</p>
+                                                <p>Examples:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// build selecting SQLTemplate
+String sql = "SELECT"
+   + " #result('ARTIST_ID' 'int'),"
+   + " #result('ARTIST_NAME' 'String'),"
+   + " #result('DATE_OF_BIRTH' 'java.util.Date')"
+   + " FROM ARTIST";
+SQLTemplate select = new SQLTemplate(Artist.class, sql, true);
+...
+DataContext context...;
+List artists = context.performQuery(select);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.7.3 Binding Parameters -  #bind Directive<br>
+    </strong><br>
+                                    <p>SQLTemplate uses <code>#bind</code> directive to indicate value binding. It has the same meaning as PreparedStatement 
+		question mark ("?" ), however it also tells Cayenne about the nature of the bound value,  so it should be used for all bindings.
+		<code>#bind()</code> directive can have a variable number of arguments. The following are the valid invocation formats: 
+		</p>
+                                                <ul>
+ 		<li><code>#bind(value)</code> - e.g. #bind($xyz) or #bind('somestring')</li>
+ 		<li><code>#bind(value jdbcTypeName)</code> - e.g. #bind($xyz 'VARCHAR'). Second argument is the name of JDBC type for
+ 		this binding. Valid JDBC types are defined in java.sql.Types class. This form is the the most common and useful. 
+ 		It is generally preferred to the single argument form, as it explicitly tells what type of JDBC value this binding is.</li>
+ 		<li><code>#bind(value jdbcTypeName precision)</code> - e.g. #bind($xyz 'DECIMAL' 2)</li>
+ 		</ul>
+                                                <p><code>#bind</code> directive example:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// build SQLTemplate
+String sql = "update ARTIST set ARTIST_NAME = #bind($name) where ARTIST_ID = #bind($id)";
+SQLTemplate update = new SQLTemplate(Artist.class, sql, false);
+...
+// set parameters and run it...
+Map parameters = new HashMap();
+parameters.put("name", "Publo Picasso");
+parameters.put("id", new Integer(1001));
+update.setParameters(parameters);
+
+DataContext context...;
+context.performNonSelectingQuery(update);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.7.4 Null Values in Bindings -  #bindEqual and #bindNotEqual Directives<br>
+    </strong><br>
+                                    <p>Sometimes when a parameter is NULL, SQL code has to be changed. For example, instead of <code>"WHERE COLUMN = ?"</code>,
+		PreparedStatement should be rewritten as <code>"WHERE COLUMN IS NULL"</code>, and instead of <code>"WHERE COLUMN &lt;&gt; ?"</code>
+		- as <code>"WHERE COLUMN IS NOT NULL"</code>. #bindEqual and #bindNotEqual directives are used to dynamically generate 
+		correct SQL string in this case. Their semantics is the same as #bind directive above, except that they do not require "=", "!=" or "&lt;&gt;" 
+		in front of them:</p>
+                                                <ul>
+ 		<li><code>#bindEqual(value), #bindNotEqual(value)</code></li>
+ 		<li><code>#bindEqual(value jdbcTypeName), #bindNotEqual(value jdbcTypeName)</code></li>
+ 		<li><code>#bindEqual(value jdbcTypeName precision), #bindNotEqual(value jdbcTypeName precision)</code></li>
+ 		</ul>
+                                                <p>Examples:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// build SQLTemplate
+// note that "=" is ommitted for the second binding, since it is a part of the directive
+String sql = "update ARTIST set ARTIST_NAME = #bind($name) where ARTIST_ID #bindEqual($id);
+SQLTemplate update = new SQLTemplate(Artist.class, sql, false);
+...
+// set parameters and run it...
+Map parameters = new HashMap();
+parameters.put("name", "Publo Picasso");
+parameters.put("id", new Integer(1001));
+update.setParameters(parameters);
+
+DataContext context...;
+
+// after binding processing PrepapredStatement SQL will look like 
+// "update ARTIST set ARTIST_NAME = ? where ARTIST_ID = ?"
+context.performNonSelectingQuery(update);
+</pre></td>
+  </tr>
+</table>   
+                                                <p> </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// build SQLTemplate
+// note that "!=" is ommitted for the second binding, since it is a part of the directive
+String sql = "update ARTIST set ARTIST_NAME = #bind($name) where ARTIST_ID #bindNotEqual($id)";
+SQLTemplate update = new SQLTemplate(Artist.class, sql, false);
+...
+// set parameters and run it...
+Map parameters = new HashMap();
+parameters.put("name", "Publo Picasso");
+parameters.put("id", null);
+update.setParameters(parameters);
+
+DataContext context...;
+
+// after binding processing PrepapredStatement SQL will look like 
+// "update ARTIST set ARTIST_NAME = ? where ARTIST_ID IS NOT NULL"
+context.performNonSelectingQuery(update);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.7.5 Building Dynamic SQL - #chain and #chunk Directives<br>
+    </strong><br>
+                                    <p>Often it is desirable to exclude parts of the WHERE clause if some parameters are null
+		or not set. This task is not trivial considering the semantics of a SQL statement. Consider this 
+		fairly simple example:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>String sql = "SELECT DISTINCT"
+   + " #result('ARTIST_ID' 'int'),"
+   + " #result('ARTIST_NAME' 'String'),"
+   + " #result('DATE_OF_BIRTH' 'java.util.Date')"
+   + " FROM ARTIST t0"
+   + " WHERE ARTIST_NAME LIKE #bind($name)"
+   + " OR ARTIST_ID > #bind($id)";
+SQLTemplate select = new SQLTemplate(Artist.class, sql, true);
+</pre></td>
+  </tr>
+</table>   
+                                                <p>It would be nice to exclude ARTIST_NAME matching if "name" parameter is null, exclude ARTIST_ID
+		matching if "id" is null, and exclude the whole WHERE clause if both are null. #chain and #chunk directives are
+		used for this purpose. Each logical piece is wrapped in a conditional "chunk", and a number of chunks are grouped
+		in a chain. If chain contains no chunks it doesn't render anything enclosed in it.
+		</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>String sql = "SELECT DISTINCT"
+   + " #result('ARTIST_ID' 'int'),"
+   + " #result('ARTIST_NAME' 'String'),"
+   + " #result('DATE_OF_BIRTH' 'java.util.Date')"
+   + " FROM ARTIST t0"
+   + " #chain('OR' 'WHERE')                              // start chain prefixed by WHERE, 
+                                                         // and joined by OR
+   + " #chunk($name) ARTIST_NAME LIKE #bind($name) #end" // ARTIST_NAME "chunk"
+   + " #chunk($id) ARTIST_ID > #bind($id) #end"          // ARTIST_ID "chunk"
+   + " #end";                                            // end of chain
+SQLTemplate select = new SQLTemplate(Artist.class, sql, true);
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    7.7.6 Binding ObjectId Values.<br>
+    </strong><br>
+                                    <p>TO BE DONE</p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/fetch/selectquery.html" class="body-white-small">7.1 SelectQuery</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/exp.html" class="body-white-small">7.2 Qualifier Expressions</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/orderings.html" class="body-white-small">7.3 Using Orderings</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/other.html" class="body-white-small">7.4 SelectQuery Customization</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/params.html" class="body-white-small">7.5 Parameterized Queries</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/sqltemplate.html" class="body-white-small">7.6 SQLTemplate Query</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/sqltemplate-scripting.html" class="body-white-small">7.7 Scripting SQLTemplate</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/datamap-queries.html" class="body-white-small">7.8 Queries Stored in DataMap</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/fetch/result-caching.html" class="body-white-small">7.9 Caching Query Results</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

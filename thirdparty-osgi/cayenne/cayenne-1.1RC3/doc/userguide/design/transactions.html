@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Design</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">4. Design</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    4.10 Cayenne Transactions<br>
+    </strong><br>
+                                    <p>Cayenne API allows to control transactional behavior in different deployment environments.
+             Cayenne can be configured to commit its own transactions or to rely on container-managed transactions, as <a href="../../modelerguide/configure-deployment/configure-transactions.html">described in the Modeler Guide</a>. 
+            </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Note:</b> <br>
+ While users are allowed to customize transactions, in most cases they shouldn't 
+            worry about this beyond choosing Cayenne vs. container-managed transactions. So this chapter is purely 
+            academic for most applications.
+            <br></td>
+  </tr>
+</table>
+                                                        
+    <strong><br>
+    4.10.1 Transactional Behavior<br>
+    </strong><br>
+                                    <p>Transaction control in Cayenne is done via instances of <a href="../../api/cayenne/org/objectstyle/cayenne/access/Transaction.html">Transaction</a>
+            class.</p>
+                                                <p><strong>Transactions at the application level - DataContext behavior.</strong> Whenever a select or
+            commit operation is initiated, DataContext obtains a new Transaction object by invoking 
+            <code>DataDomain.createTransaction()</code> on the parent DataDomain. DataDomain returns a 
+            transaction with preconfigured commit behavior. This is defined by the boolean property <code>usingExternalTransactions</code>,
+            that can be configured in the Modeler or via API.
+            </p>
+                                                <p><strong>Transactions at the database level - DataNode behavior.</strong> Transaction is passed to DataNode
+            as an argument to <code>DataNode.performQueries(List, OperationObserver, Transaction)</code>. DataNode does
+            not attempt to commit or rollback a connection used in the query, rather it adds currently used JDBC Connection
+            to the Transaction object by calling <code>Transaction.addConnection(java.sql.Connection)</code>.
+            </p>
+                                                                            
+    <strong><br>
+    4.10.2 User Control over Transactions<br>
+    </strong><br>
+                                    <p>As mentioned before, users shouldn't normally deal with Transactions explicitly. However if there is a need to do
+            so, Cayenne provides completely open API discussed in this section.</p>
+                                                <p><strong>Explict Transactions.</strong> <a href="../../api/cayenne/org/objectstyle/cayenne/access/QueryEngine.html">QueryEngine interface</a> implemented by 
+			DataContext, DataDomain and DataNode, defines "performQueries" method that takes an instance of Transaction
+			as one of its arguments. Users can invoke this method with their own subclass of Transaction.
+			</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Explicit Transactions Note:</b> <br>
+
+			When calling "QueryEngine.performQueries(Collection, OperationObserver, Transaction)", it is always a caller's responsibility to
+			invoke "begin/commit/rollback" methods. Cayenne will only add the JDBC connections involved in the transaction to the Transaction
+			object, but will not attempt to alter its state.
+			<br></td>
+  </tr>
+</table>
+                                                <p> </p>
+                                                <p><strong>Explict Transactions Made Simple.</strong>
+			As mentioned above, when using a Transaction explicitly, it is caller's responsibility to commit or rollback 
+			the transaction. However Transaction class itself can take care of this. Transaction implements a method
+			<code>performQueries</code> that uses a provided QueryEngine (e.g. DataContext) to run a set of
+			queries in its own transactional context. At the end transaction will be comitted or rolled back depending on the 
+			outcome of the operation. This is much less error-prone than manually managing Transaction state.
+			</p>
+                                                <p><strong>TransactionDelegate.</strong> Another way to customize existing Cayenne transactions behavior and/or
+           track transactions execution is <a href="../../api/cayenne/org/objectstyle/cayenne/access/TransactionDelegate.html">TransactionDelegate</a> interface. 
+			A delegate can be set per DataDomain. All DataContexts created by this Domain will "inherit" the delegate. E.g.:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+// on startup
+DataDomain defaultDomain = Configuration.getDomain();
+defaultDomain.setTransactionDelegate(new CustomTransactionDelegate());
+</pre></td>
+  </tr>
+</table>   
+                                                <p>TransactionDelegate implements a set of methods that are called during transaction processing. All methods that have a boolean 
+			return type allow the delegate to suppress default transaction processing by returning <code>false</code>, thus preventing Cayenne 
+			from interfering with container
+			TransactionManager. 
+            </p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/design/orm.html" class="body-white-small">4.1 Object Relational Mapping</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/graph.html" class="body-white-small">4.2 Object Graph</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/dataobj.html" class="body-white-small">4.3 Data Objects</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/access.html" class="body-white-small">4.4 Access Classes</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/datasrc.html" class="body-white-small">4.5 Cayenne DataSource</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/crossdb.html" class="body-white-small">4.6 Cross-Database Issues</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/autopk.html" class="body-white-small">4.7 Primary Key Generation</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/dataobjects-datarows.html" class="body-white-small">4.8 How Information Is Stored in Cayenne</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/caching.html" class="body-white-small">4.9 Understanding Caching</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/transactions.html" class="body-white-small">4.10 Understanding Transactions</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/design/events.html" class="body-white-small">4.11 Event Package</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

@@ -1,0 +1,22 @@
+<project default="osgi:impronto" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+  <goal name="osgi:cayenne">
+   
+      <!-- <attainGoal name="java:compile"/> -->
+      <ant:unjar src="${basedir}/cayenne-1.1RC3/lib/cayenne.jar" dest="${maven.build.dir}/classes"/>
+	 <attainGoal name="osgi:install"/>
+
+   </goal>
+  	
+</project>

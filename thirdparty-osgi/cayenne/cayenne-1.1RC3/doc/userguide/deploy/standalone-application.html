@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Deployment</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">12. Deployment</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    12.1 Standalone Applications<br>
+    </strong><br>
+                                            
+    <strong><br>
+    12.1.1 Shared Configuration<br>
+    </strong><br>
+                                    <p>In a standalone Java application, <a href="../../api/cayenne/org/objectstyle/cayenne/conf/DefaultConfiguration.html">DefaultConfiguration</a>
+                is used to locate and load configuration files. This approach does not require any additional setup. 
+				Shared configuration instance can simply be obtained by calling <code>getSharedConfiguration()</code>:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>import org.objectstyle.cayenne.conf.Configuration;
+...           
+Configuration conf = Configuration.getSharedConfiguration();
+</pre></td>
+  </tr>
+</table>   
+                                                <p>DefaultConfiguration will expect <code>cayenne.xml</code> file to be located 
+              in the CLASSPATH. The same is true for datamaps referenced in <code>cayenne.xml</code>.
+              Their location is resolved relative to CLASSPATH as well. To make these files available to
+              Cayenne, you can simply include them in the root of your application jar file (read 
+				<a href="custom.html">Chapter 12.3.2</a> on how to change that). 
+              </p>
+                                                <p>The location of the datasource files referenced in <code>cayenne.xml</code>
+              depends on what factory was assigned to each datasource in <code>cayenne.xml</code>.
+              Normally this would be a <a href="../../api/cayenne/org/objectstyle/cayenne/conf/DriverDataSourceFactory.html">org.objectstyle.cayenne.conf.DriverDataSourceFactory</a>. It would use
+               the following lookup order to resolve locations:
+               
+               <ul>
+                  <li>Location is assumed to be a file relative to the user HOME 
+                  directory (as defined by <code>user.home</code> system property).</li>
+                  <li>Location is assumed to be a file relative to the current directory
+                  from which the application was started.</li>
+                  <li>Location is assumed to be a resource relative to CLASSPATH.</li>
+               </ul>
+               
+               This lookup order makes configuration very flexible in that it separates
+               datasource configuration files from the application distribution (jar file).
+               A compiled application can be deployed as a jar file containing <code>cayenne.xml</code>
+               and datamap files, without any datasource files.  This way a user wouldn't
+               need to rebuild a jar for each of the target environments that has a 
+               different database server or user id (also check out <a href="cdeploy.html">"cdeploy" 
+				Ant task</a> for cleaner ways to configure deployment database settings).
+               </p>
+                                                                    <p> </p>
+                                                        
+    <strong><br>
+    12.1.2 Shared Configuration and DataContext<br>
+    </strong><br>
+                                    <p>In a setup that relies on shared Configuration a DataContext can be created by calling 
+				DataContext.createDataContext() static method that internally uses shared configuration:
+				</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+import org.objectstyle.cayenne.access.DataContext;
+...
+DataContext context = DataContext.createDataContext();</pre></td>
+  </tr>
+</table>   
+                                                <p>Later a DataContext can be passed around in the code explicitly, or it can be bound to an 
+				execution thread, making it accessible to all code being run within this thread (e.g. this can be a 
+				Swing event thread):
+				</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+import org.objectstyle.cayenne.access.DataContext;
+...
+DataContext context = DataContext.createDataContext();
+DataContext.bindThreadDataContext(context);</pre></td>
+  </tr>
+</table>   
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/deploy/standalone-application.html" class="body-white-small">12.1 Standalone Applications</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/web-application.html" class="body-white-small">12.2 Web Applications</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/custom.html" class="body-white-small">12.3 Customizing Configuration</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/jndi.html" class="body-white-small">12.4 Using JNDI</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/cdeploy.html" class="body-white-small">12.5 Deployment with Ant</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/logging.html" class="body-white-small">12.6 Configuring Logging</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Working with DataObjects</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">8. Working with DataObjects</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    8.7 Handling Inheritance<br>
+    </strong><br>
+                                    <p>"Inheritance" is an Object Oriented concept absent in traditional RDBMS. Cayenne however allows to
+    	map a hierarchical class tree to a single base table (so called "single table inheritance"). Such mapping
+    	is <a href="../../modelerguide/modeling-object-layer/inheritance.html">described in detail</a> in the 
+    	Modeler Guide. The idea of single table inheritance is that a "class" of a database row is determined 
+    	from the values in one or more columns of the base table. These columns are called "class designator 
+    	columns".
+    	</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Initial Values of the Classs Designator Columns</b> <br>
+Assigning correct values to the 
+		"class designator columns" mentioned above is one task that is not yet automated in Cayenne 
+		and requires user code in the DataObject, as discussed in the next subsection. In the future versions 
+		this will likely be handled in the mapping and completely outside of the Java classes, 
+		so the advise below will become obsolete.<br></td>
+  </tr>
+</table>
+                                                        
+    <strong><br>
+    8.7.1 Inheritance and new DataObjects<br>
+    </strong><br>
+                                    <p>Consider the following class hierarchy (also used in the Modeler Guide example): </p>
+                                                <img src='../../images/modelerguide/inheritance-diagram.jpg' width='300' height='249'/>
+                                                <p>If a class designator column is "PERSON_TYPE", AbstractPerson class should define an attribute 
+    	(for instance called "personType") that maps to PERSON_TYPE. This attribute
+    	is redundant and meanigless in Java, since person type is defined already by the Java class of the object, 
+    	however we still have to keep it around so that when the new objects are saved, correct PERSON_TYPE data is
+    	stored in the database. Currently it is a developer responsibility to set "personType" value (or values of any 
+    	other attributes that map to "class designator columns") when the new object is registered with DataContext. 
+    	One way to take care of this is to override "setPersistenceState(..)" method on each DataObject class in 
+    	the inheritance hierarchy to catch when the object is registered with DataContext:
+    	</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>public class Employee extends _Employee {
+    public void setPersistenceState(int state) {
+        super.setPersistenceState(state);
+        
+        // if object was just created
+        if(state == PersistenceState.NEW) {
+           setPersonType("EMPLOYEE");
+        }
+    }
+...
+}
+
+public class Manager extends _Manager {
+    public void setPersistenceState(int state) {
+        super.setPersistenceState(state);
+        
+        // if object was just created
+        if(state == PersistenceState.NEW) {
+           setPersonType("MANAGER");
+        }
+    }
+...
+}
+
+public class CustomerContact extends _CustomerContact {
+    public void setPersistenceState(int state) {
+        super.setPersistenceState(state);
+        
+        // if object was just created
+        if(state == PersistenceState.NEW) {
+           setPersonType("CUSTOMER");
+        }
+    }
+...
+}</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    8.7.2 Inheritance and SelectQueries<br>
+    </strong><br>
+                                    <p>When performing SelectQuery on a table that maps to inheritance hierarchy, Cayenne will
+    	only return rows that belong to root class of the query and all its subclasses. No superclasses or
+    	objects from parallel inheritance branches will be returned. For example executing a SelectQuery 
+    	with Employee class as root will potentially return a mix of 
+    	Employees and Managers (who are also Employees of course), but no CustomerContact objects:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>DataContext context;
+...
+SelectQuery query = new SelectQuery(Employee.class);
+List employees = context.performQuery(query);
+ 
+// employees list will contain "regular" employees and managers
+Iterator it = employees.iterator();
+while(it.hasNext()) {
+   Employee e = (Employee) it.next();
+   if(e instanceof Manager) {
+   	// do something with manager...
+   }
+}</pre></td>
+  </tr>
+</table>   
+                                                <p>The need to determine the correct class for each fetched database row makes 
+ 		queries on entities that use inheritance less efficient than the regular queries. 
+ 		If an application doesn't care about the query root class subclasses, the 
+ 		query can be optimized by explicitly turning off inheritance resolution. If this is done,
+ 		the example above will return all Managers as instances of Employee class, not Manager class:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>DataContext context;
+...
+SelectQuery query = new SelectQuery(Employee.class);
+ 
+// *** explicitly turn off inheritance resolution
+query.setResolvingInherited(false);
+ 
+List employees = context.performQuery(query);
+ 
+// employees list will contain no Manager instances...
+// all Managers will be returned as regular Employees</pre></td>
+  </tr>
+</table>   
+                                                <p> </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Relationship Note:</b> <br>
+Whenever an object is obtained via a relationship, 
+    	it is always fully resolved to the lowest possible subclass in an entity inheritance tree.
+    	<br></td>
+  </tr>
+</table>
+                                                <p> </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Warning:</b> <br>
+Use "setResolvingInherited(false)" with caution, and only if you never
+    	plan to work with subclasses. The downside of it is that the DataContext may end up with two
+    	objects pointing to the same database row, thus violating uniquing principle. With the above example, 
+    	this may happen if at a later time user decides to fetch Managers directly, or if a Manager object is
+    	obtained via a relationship.
+    	<br></td>
+  </tr>
+</table>
+                                                                            
+    <strong><br>
+    8.7.3 Current Inheritance Limitations<br>
+    </strong><br>
+                                    <p><strong>Custom Types used in subclasses:</strong></p>
+                                                <p>As reported in <a target="_blank" href="http://objectstyle.org/jira/secure/ViewIssue.jspa?key=CAY-207">JIRA 
+		issue CAY-207</a>, SelectQueries performed using superclass as a root can't correctly resolve attributes
+		mapped in subclasses to non-standard (or custom) Java types. Here "standard" mapping means Java class to JDBC
+		type mapping defined in JDBC specification.</p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/dataobjects/relationships.html" class="body-white-small">8.1 Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/flattened-relationships.html" class="body-white-small">8.2 Flattened Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/dataobjects-example.html" class="body-white-small">8.3 DataObjects Example</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/unmapped-keys.html" class="body-white-small">8.4 Accessing PK/FK Values</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/dataobjectutils.html" class="body-white-small">8.5 DataObjectUtils</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/validation.html" class="body-white-small">8.6 DataObject Validation</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/dataobjects-inheritance.html" class="body-white-small">8.7 Handling Inheritance</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

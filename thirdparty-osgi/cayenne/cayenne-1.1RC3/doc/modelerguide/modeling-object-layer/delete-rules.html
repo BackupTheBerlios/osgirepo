@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: CayenneModeler Guide - Relationship Delete Rules</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">6. Modeling Object Layer</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    6.5 Delete Rules<br>
+    </strong><br>
+                                    <p>One of the columns in the Modeler ObjRelationships panel is "Delete Rule". It tells Cayenne what to do with related objects
+		when a <strong>source object</strong> of the relationship is deleted. Cayenne will use this delete rule to perform cleanup
+		of other objects after a given object was deleted from the graph.
+		</p>
+                                                <p>Default delete rule is <strong>No Action</strong>, meaning just that - when an object is deleted, no changes should 
+		happen to objects related to this object via a given relationship. Though this is a default, it is not very useful,
+		and can lead to object graph corruption in many cases. It is developer responsibility to select a more meaningful delete rule. 
+		The choices are: "Nullify", "Cascade" and "Deny". Each one of them is explained below.</p>
+                                                <ul>
+		<li><strong>Nullify Rule:</strong> When a <strong>source object</strong> is deleted, any pointers from the <strong>target 
+		object(s)</strong> back to the deleted object will be reset to null. This presumes an existence of reverse ObjRelationship for
+		a given ObjRelationship. If no such reverse relationship exist, "Nullify" rule has no effect. This rule should be used when target
+		object(s) of relationship can exist without the source object and do not depend on it. Example: <code>Employee.toDepartment</code>
+		relationship logically should use "Nullify" rule. <br /><br />
+		</li>
+		
+		<li><strong>Cascade Rule:</strong> When a <strong>source object</strong> is deleted, any of the <strong>target 
+		object(s)</strong> will be deleted too. This may cause the whole tree of objects to be deleted with one command.
+		This rule should be used when target object(s) of relationship can not exist without the source object. Example: 
+		<code>Department.employeeArray</code> relationship may use "Cascade" rule. <br /><br /></li>
+		
+		<li><strong>Deny Rule:</strong> When a <strong>source object</strong> is being deleted, but it  has at least
+		one <strong>target object</strong> this rule would generate a runtime exception on delete attempt. This rule
+		is usually a reflection of certain business rules in the application.  Example: 
+		<code>Department.employeeArray</code> relationship may use "Deny" rule if there is an application requirement
+		that explicitly states that non-empty departments can not be deleted.</li>
+		</ul>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Cayenne Delete Rules vs. DB Delete Rules</b> <br>
+
+		Some databases allow to define delete rules logically similar to the rules described above. Cayenne rules differ from DB
+		rules in that they deal with object graph instead of relational schema. Some changes to the object graph will result in
+		database operations (e.g. resetting FK to NULL as a result of Nullify rule), some others will not (e.g. removing a deleted 
+		DataObject from the to-many array as a result of another Nullify rule).
+		<br></td>
+  </tr>
+</table>
+                                                </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../modelerguide/index.html" class="body-white-small">CayenneModeler Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../modelerguide/modeler-intro/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/object-relational-modeling/index.html" class="body-white-small">2. ORM Case Study</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/model-structure/index.html" class="body-white-small">3. Cayenne Project Structure</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/common-tasks/index.html" class="body-white-small">4. Common Modeling Tasks</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-db-layer/index.html" class="body-white-small">5. Modeling Database Layer</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-object-layer/index.html" class="body-white-small">6. Modeling Object Layer</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/objentities.html" class="body-white-small">6.1 Modeling ObjEntities</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/inheritance.html" class="body-white-small">6.2 Modeling Inheritance</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/many-to-many.html" class="body-white-small">6.3 Many-to-Many Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/flattenedrel.html" class="body-white-small">6.4 Flattened Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/delete-rules.html" class="body-white-small">6.5 Delete Rules</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-queries/index.html" class="body-white-small">7. Modeling Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/configure-deployment/index.html" class="body-white-small">8. Configuring Deployment Settings</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/preferences/index.html" class="body-white-small">9. Preferences Panel</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-tips.html" class="body-white-small">10. Modeling Tips</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Working with DataObjects</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">8. Working with DataObjects</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    8.6 DataObject Validation<br>
+    </strong><br>
+                                    <p>DataObject implements a set of methods to validate its state. DataContext calls these methods 
+    	before performing a commit. If validation fails, commit is aborted with <a href="../../api/cayenne/org/objectstyle/cayenne/validation/ValidationException.html">ValidationException</a>.
+    	There are a few clear benefits of validating DataObjects at the application level before committing them to the
+    	database: 
+    	</p>
+                                                <ul>
+    		<li>Cayenne can leverage ORM metadata (DataMap) to check for many standard error
+    		conditions.</li>
+    		<li>Custom validation can be easily integrated into the business objects by overriding standard 
+    		validation methods.</li>
+    		<li>Validation failures can be tracked down to the individual objects and their properties, allowing creation of
+    		user-friendly, internationalized validation messages.</li>
+    		<li>Relying on database validation for things like mandatory properties, 
+    		etc., would result in errors that are meaningless or extremely hard to decode in the application context.</li>
+    		<li>Application validation partially addresses shortcomings of databases that do not support real 
+    		transactions (e.g. MySQL). Validation would trap the whole class of errors that would otherwise result in 
+    		failure halfway through the commit, leaving database in inconsistent state.</li>
+    		<li>Automating of the business objects validation takes away some burden from the UI that now has 
+    		fewer things to track.</li>
+    	</ul>
+                                                        
+    <strong><br>
+    8.6.1 Validation API<br>
+    </strong><br>
+                                    <p>Each DataObject participating in commit operation (i.e. those in state NEW, DELETED or MODIFIED , in other words 
+    	"non-committed")  will be validated by DataContext's ObjectStore during commit processing. Depending on the non-committed 
+    	object state, ObjectStore calls one of the methods described below (description of method behavior is provided for 
+    	CayenneDataObject implementation):</p>
+                                                <ul>
+            <li><code>public void <b>validateForInsert</b>(ValidationResult validationResult)</code><br />
+			
+			<code>public void <b>validateForUpdate</b>(ValidationResult validationResult)</code><br />
+			<p>Implementation internally calls <code>validateForSave(..)</code>.  When 
+			overriding, in most cases developers should invoke "super".
+			</p>
+			</li>
+			
+			<li><code>public void <b>validateForDelete</b>(ValidationResult validationResult)</code><br />
+			This method does nothing by default and exists merely for overriding.
+			<p />
+			</li>
+			
+			<li><code>protected void <b>validateForSave</b>(ValidationResult validationResult)</code><br />
+			This method only exists in CayenneDataObject (and not in DataObject). It is invoked  internally 
+			from  <code>validateForInsert(..)</code> and 
+			<code>validateForUpdate(..)</code>, performing some generic validation 
+			based on the DataMap information. This includes checking for nulls and for values that exceed their
+			database size limitations. When overriding this method to include custom validation, developers 
+			should call "super" in most cases.
+			<p />
+			</li>
+        </ul>
+                                                <p>Custom validation method implementation would normally append any failures to the provided <a href="../../api/cayenne/org/objectstyle/cayenne/validation/ValidationResult.html">ValidationResult</a> 
+    	instance. After validating all non-committed objects, DataContext (or rather its ObjectStore)
+        will check if the ValidationResult is not empty, and throw an exception if there is at least one failure.
+       Typical custom validation method would look like that:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+public class Painting extends _Painting {
+   ...
+   protected void validateForSave(ValidationResult validationResult) {
+      super.validateForSave(validationResult);
+     
+      // check business rules
+      if(getEstimatedPrice().doubleValue() <= 0.0) {
+         validationResult.addFailure(
+                this, // source object of the failure
+                Painting.ESTIMATED_PRICE_PROPERTY, // failed property name
+                "Painting price must be greater than zero.")); // error message  
+      }
+   }
+   ...
+} 
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    8.6.2 Turning Validation On/Off<br>
+    </strong><br>
+                                    <p>Whether DataContext performs validation at all depends on the value of its property
+		"validatingObjectsOnCommit". Calling "isValidatingObjectsOnCommit()" returns currently 
+		configured value. Default value (usually "true") is propagated from the parent DataDomain
+		when DataContext is created. This default value can be configured using CayenneModeler as 
+		described in <a href="../../modelerguide/configure-deployment/configure-validation.html">Deployment 
+		Configuration</a> chapter of the Modeler Guide. 
+		</p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/dataobjects/relationships.html" class="body-white-small">8.1 Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/flattened-relationships.html" class="body-white-small">8.2 Flattened Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/dataobjects-example.html" class="body-white-small">8.3 DataObjects Example</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/unmapped-keys.html" class="body-white-small">8.4 Accessing PK/FK Values</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/dataobjectutils.html" class="body-white-small">8.5 DataObjectUtils</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/validation.html" class="body-white-small">8.6 DataObject Validation</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/dataobjects/dataobjects-inheritance.html" class="body-white-small">8.7 Handling Inheritance</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

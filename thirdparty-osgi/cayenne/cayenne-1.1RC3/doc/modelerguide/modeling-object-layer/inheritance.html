@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: CayenneModeler Guide - Many-to-Many Relationships</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">6. Modeling Object Layer</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    6.2 Modeling Inheritance<br>
+    </strong><br>
+                                    <p>"Inheritance" is an Object Oriented concept absent from traditional RDBMS world. 
+		Still Cayenne allows to map a class hierarchy to the database schema. All classes
+		in the hierarchy map to the same base table (this type of mapping is therefore called
+		"single table inheritance"). One or more columns in the base table are usually assumed
+		to be "class designator columns"; their values determine what object class to use when a fetched 
+		row is converted to a persistent object.
+    	</p>
+                                                        
+    <strong><br>
+    6.2.1 Creating ObjEntity Hierarchy<br>
+    </strong><br>
+                                    <p>Consider the following class hierarchy that we want to map to a PERSON table: </p>
+                                                <img src='../../images/modelerguide/inheritance-diagram.jpg' width='300' height='249'/>
+                                                <p>For each of the four Java classes one may create individual ObjEntities, however only
+    	AbstractPerson entity would map directly to the underlying "PERSON" DbEntity. For the 
+    	rest instead of selecting a value from the "Table/View" dropdown, a corresponding
+    	"super entity" from the "Inheritance" dropdown should be selected. Note that when an 
+    	entity inherits from another entity, a list of inherited attributes and relationships
+    	shows up as read only information under the corresponding tabs.</p>
+                                                                            
+    <strong><br>
+    6.2.2 Defining Class Qualifier<br>
+    </strong><br>
+                                    <p>Afer creating entity inheritance tree, it is important to configure
+    	how the entities differ from each other, so that later when the data is fetched, Cayenne
+    	would know which class to instantiate. This is achieved by using entity qualifiers described
+    	earlier. Usually all entities in the hierarchy, except for the root, require such qualifier.
+    	It should be created in such a way that it completely defines a given entity without considering any
+    	subclasses or superclasses. In the example above, if the possible values of the class designator column
+    	are  "EMPLOYEE", "MANAGER", "CUSTOMER", the following qualifiers might be used:
+    	</p>
+                                                <table width="100%" border="0" cellspacing="1" cellpadding="3" class="body-black" bgcolor="#999966">
+                        <tr>
+                        <td  bgcolor="#FFFF99" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                ObjEntity
+        </td>
+                                <td  bgcolor="#FFFF99" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Qualifier
+        </td>
+                                <td  bgcolor="#FFFF99" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Final Qualifier Generated by Cayenne for SelectQuery
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                AbstractPersion
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                none
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                none
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                CustomerContact
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                personType = 'CUSTOMER'
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                personType = 'CUSTOMER'
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Employee
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                personType = 'EMPLOYEE'
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                personType = 'EMPLOYEE' or personType = 'MANAGER'
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Manager
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                personType = 'MANAGER'
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                personType = 'MANAGER'
+        </td>
+            </tr>
+            </table>
+                                                <p> </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Qualifiers Note:</b> <br>
+
+    	Qualifiers are not inherited! When defining qualifiers for inheritance purposes keep in mind 
+    	that the actual qualifier built by Cayenne will include the qualifier of a root entity and qualifiers of all
+    	its known subentities joined using "or" operator, as shown in the above example.
+    	<br></td>
+  </tr>
+</table>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../modelerguide/index.html" class="body-white-small">CayenneModeler Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../modelerguide/modeler-intro/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/object-relational-modeling/index.html" class="body-white-small">2. ORM Case Study</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/model-structure/index.html" class="body-white-small">3. Cayenne Project Structure</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/common-tasks/index.html" class="body-white-small">4. Common Modeling Tasks</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-db-layer/index.html" class="body-white-small">5. Modeling Database Layer</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-object-layer/index.html" class="body-white-small">6. Modeling Object Layer</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/objentities.html" class="body-white-small">6.1 Modeling ObjEntities</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/inheritance.html" class="body-white-small">6.2 Modeling Inheritance</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/many-to-many.html" class="body-white-small">6.3 Many-to-Many Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/flattenedrel.html" class="body-white-small">6.4 Flattened Relationships</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../modelerguide/modeling-object-layer/delete-rules.html" class="body-white-small">6.5 Delete Rules</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-queries/index.html" class="body-white-small">7. Modeling Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/configure-deployment/index.html" class="body-white-small">8. Configuring Deployment Settings</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/preferences/index.html" class="body-white-small">9. Preferences Panel</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../modelerguide/modeling-tips.html" class="body-white-small">10. Modeling Tips</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

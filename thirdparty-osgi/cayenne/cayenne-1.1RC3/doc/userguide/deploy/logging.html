@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Deployment</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">12. Deployment</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    12.6 Configuring Logging<br>
+    </strong><br>
+                                    <p>Cayenne logging is based on <a href="http://jakarta.apache.org/log4j">Log4J
+            package</a> from Jakarta Apache Project. This is the most powerful and flexible logging 
+            framework available in Java. Log4J configuration is normally done using a property file. 
+            Later in this chapter we explain how Cayenne loads configuration files and how to customize this process.
+            Format of the entries in this file is described in the <a href="http://jakarta.apache.org/log4j/docs/manual.html">Log4j documentation</a>. 
+            Here is a sample configuration file contents:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+# General Log4J stuff
+log4j.rootLogger=WARN, A1
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=cayenne %-5p [%t %d{MM-dd HH:mm:ss}] %c{1}: %m%n
+
+# indiv. packages configuration - turning on the packages that we care about
+#log4j.logger.org.objectstyle.cayenne = INFO
+
+# This is the logger that controls SQL output
+# Setting the level to INFO or DEBUG will turn the logs on
+log4j.logger.org.objectstyle.cayenne.access.QueryLogger = INFO
+</pre></td>
+  </tr>
+</table>   
+                                                <p>
+            </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Users of Other Logging Frameworks:</b> <br>
+
+            If your application uses another package for its own logging purposes 
+            (like JDK 1.4 java.util.logging, or commons-logging from Jakarta), 
+            Cayenne Log4J-based logging will not interfere with your other logging configurations.
+            <br></td>
+  </tr>
+</table>
+                                                <p>
+            </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" class="note">
+  <tr>
+   <td  class="body-black"><b><img src="../../images/i.gif" width="12" height="12">
+   &nbsp;Log4J Users:</b> <br>
+
+            If your application already uses Log4J, Cayenne will simply use your existing configuration.
+            <br></td>
+  </tr>
+</table>
+                                                        
+    <strong><br>
+    12.6.1 Essential Loggers.<br>
+    </strong><br>
+                                    <p><strong>SQL Tracing.</strong>
+            Very important logging feature of Cayenne is tracing the execution of SQL statements. 
+            If configured appropriately, Cayenne will log opened connections, 
+            executed queries, and DDL statements. This is extremely important in understanding
+            what is going on in the application, tracing bugs, etc. Logger that is responsible for SQL logging
+            is "org.objectstyle.cayenne.access.QueryLogger". Its default logging level is INFO, so the following
+            lines in the configuration file will turn it on or off:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre># Turn SQL tracing on
+log4j.logger.org.objectstyle.cayenne.access.QueryLogger = INFO
+</pre></td>
+  </tr>
+</table>   
+                                                <p>
+            </p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+# Turn SQL tracing off, e.g. to increase performance
+log4j.logger.org.objectstyle.cayenne.access.QueryLogger = WARN
+</pre></td>
+  </tr>
+</table>   
+                                                <p>When SQL tracing is turned off, it is possible to log the execution of only certain queries
+			or commits by manually increasing the logging level of just a specific query above the level configured
+			for the QueryLogger. This is a very convenient feature for debugging the code, since it reduces the level 
+			of noise in the logs, focusing attention on the queries that are important. This API is <a href="../../faq/develop.html#log_query">discussed in the FAQ</a>.</p>
+                                                <p><strong>Tracing Configuration Loading.</strong> Cayenne XML files may contain errors, or maybe missing
+			or inaccessible by the application; there maybe lots of other reasons why Cayenne fails to startup, from 
+			missing JDBC drivers to misspelled database URLs. To trace configuration loading process, you will need to
+			turn on the following loggers:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+log4j.logger.org.objectstyle.cayenne.conf = DEBUG
+log4j.logger.org.objectstyle.cayenne.util = DEBUG
+</pre></td>
+  </tr>
+</table>   
+                                                                            
+    <strong><br>
+    12.6.2 Default Configuration<br>
+    </strong><br>
+                                    <p>Default behaviour of Cayenne is to look for a file called <code>cayenne-log.properties</code>, 
+            first in the directory $HOME/.cayenne/, then in the CLASSPATH (i.e. a file called <code>.cayenne/cayenne-log.properties</code>
+            at the root of one of the locations accessible by the ClassLoader). 
+            $HOME is a system specific home directory of a user
+            running the application. If you don't know what it is, try printing it from Java like this:
+            <code>System.out.println(System.getProperty("user.home"))</code>.</p>
+                                                <p>If you don't explicitly create this file,
+            Cayenne will use the one included in cayenne.jar (and therefore guaranteed to be in the CLASSPATH).
+            This means - <strong>no special logging configuration is required</strong>, Cayenne will just work out of the box.
+            </p>
+                                                                            
+    <strong><br>
+    12.6.3 Custom Configuration File<br>
+    </strong><br>
+                                    <p>If you are not satisfied with the default location or default file name of the logging configuration,
+            you can supply your own:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>// Obtain the URL of the custom configuration file
+java.net.URL url = ....;
+
+// configure cayenne logging
+// note that URL can be null, resulting in default settings
+org.objectstyle.cayenne.conf.Configuration.configureCommonLogging(url);
+</pre></td>
+  </tr>
+</table>   
+                                                <p>It is important to execute this code <strong>before</strong> any calls to Cayenne are made in
+			the application, or otherwise it will have no effect on logging.
+            </p>
+                                                                            
+    <strong><br>
+    12.6.4 Configuring Log4J outside of Cayenne.<br>
+    </strong><br>
+                                    <p>Finally, if your application already uses Log4J and implements its own logic to configure logging,
+            it would be undesirable for Cayenne to use its default behavior and override any application settings. Also
+            it is convenient to use a single logging configuration file per application. Cayenne detects
+            if Log4J has already been started and will stop any attempts to configure logging. This means that
+            Log4J services must be configured prior to any calls to Cayenne.
+            </p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/deploy/standalone-application.html" class="body-white-small">12.1 Standalone Applications</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/web-application.html" class="body-white-small">12.2 Web Applications</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/custom.html" class="body-white-small">12.3 Customizing Configuration</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/jndi.html" class="body-white-small">12.4 Using JNDI</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/cdeploy.html" class="body-white-small">12.5 Deployment with Ant</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/deploy/logging.html" class="body-white-small">12.6 Configuring Logging</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: User Guide - Quick Start</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">3. Quick Start</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    3.3 JSP/Struts Tutorial<br>
+    </strong><br>
+                                    <p>This is a simple Cayenne web application tutorial. Full tutorial source code is included in 
+    	Cayenne distribution in "src/tutorials" folder.
+    	</p>
+                                                <p>Tutorial steps:</p>
+                                                <ul>
+    		<li><a href="#1">Tutorial Setup.</a></li>
+    		<li><a href="#2">Prepare Tutorial Database.</a></li>
+    		<li><a href="#3">Setup Cayenne Configuration Files.</a></li>
+    		<li><a href="#4">Create Database Primary Key Support.</a></li>
+    		<li><a href="#5">Generate Java Code for DataObjects.</a></li>
+    		<li><a href="#6">Compile and Deploy the Application.</a></li>
+    	</ul>
+                                                        <a name="1"></a>
+        
+    <strong><br>
+    3.3.1 Tutorial Setup<br>
+    </strong><br>
+                                    <p>- Make sure you successfully finished <a href="index.html">common setup steps</a>.</p>
+                                                <p>- Install a web container. This tutorial was tested with <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat</a> version 4.1.10.
+       		It should work with any other container that is compliant with Servlet 2.3
+       		specification (older containers will also work, but you will not be able
+       		to use some of ServletConfiguration features discussed below). 
+       		All references to Tomcat below should apply in some form to other web containers
+       		as well.</p>
+                                                <p>- Use tutorial source directory distributed with Cayenne at
+    		<code>$CAYENNE_HOME/src/tutorials/cayenne-web-app</code> 
+    		as a project directory.</p>
+                                                <p>- Copy <code>cayenne.jar</code> to the <code>WEB-INF/lib</code> subdirectory of 
+    		the tutorial project directory.</p>
+                                                <p> - Copy JDBC driver jar file to 
+       		<code>WEB-INF/lib</code> subdirectory of the tutorial project.
+       		</p>
+                                                <p>- Install Struts: 
+    		<ul>
+    		<li>Download Struts from <a href="http://jakarta.apache.org/struts/index.html">Jakarta Struts site</a>, unpack it
+    		to any convenient directory.</li> 
+    		
+    		<li>Copy all JAR files distributed with Struts (located in <code>lib</code> subdirectory) to
+    		<code>WEB-INF/lib</code> subdirectory of the tutorial project.</li>
+    		
+    		<li>Copy all the *.tld files and validator-rules.xml from Struts 
+    		<code>lib</code> subdirectory 
+    		to <code>WEB-INF</code> subdirectory of the tutorial project.
+			
+    		</li>
+    		</ul>
+    		
+    		Tutorial was testsed with Struts 1.1, other versions of Struts may
+    		require a different setup.</p>
+                                                <br />
+                                                                            <a name="2"></a>
+        
+    <strong><br>
+    3.3.2 Prepare Tutorial Database<br>
+    </strong><br>
+                                    <p>Run <a href="../../tutorials/cayenne-web-app/tutorialdb.sql"><code>tutorialdb.sql</code></a>
+    		script located in the project directory to create test tables. 
+    		This script is tested on MySQL, but it should be easy to port to any other RDBMS. Also
+    		note that if you already tried "Command Line Application" tutorial in
+    		this chapter, you may already have tables with the same names in your database.
+    		In this case you may uncomment "DROP TABLE..." statements in the beginning
+    		of this script to recreate tables from scratch.</p>
+                                                                            <a name="3"></a>
+        
+    <strong><br>
+    3.3.3 Setup Cayenne Configuration Files<br>
+    </strong><br>
+                                    <p>Configuration files included in this tutorial are:
+    		
+    		<ul>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/cayenne.xml">cayenne.xml</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/datamap.map.xml">datamap.map.xml</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/datanode.driver.xml">datanode.driver.xml</a></li>
+    		</ul>
+    		
+    		Save these files under WEB-INF subdirectory of the tutorial project folder. Open <code>cayenne.xml</code> 
+    		file in CayenneModeler and make the following changes:
+    		<ul>
+    			<li>if the database used is NOT MySQL, <code>cayenne.xml</code>
+    			must be modified to use an adapter for the appropriate database.</li>
+    			<li><code>driverinfo.xml</code> must be modified to reflect connection and
+    			driver information of the test database.</li>
+    		</ul>         	
+    		</p>
+                                                <img src='../../images/modelerguide/select-adapter.jpg' width='520' height='336' align='middle' alt='Configure Node Panel'/>
+                                                <br />
+                                                                            <a name="4"></a>
+        
+    <strong><br>
+    3.3.4 Create Database Primary Key Support.<br>
+    </strong><br>
+                                    <p>Open <code>cayenne.xml</code> in CayenneModeler and generate needed database
+    	objects for primary key support by following these  
+    	<a href="../../modelerguide/common-tasks/pksupport.html">instructions</a>. Skip this step if it was already 
+    	done for another tutorial.</p>
+                                                                            <a name="5"></a>
+        
+    <strong><br>
+    3.3.5 Generate Java Code for DataObjects<br>
+    </strong><br>
+                                    <p>Open <code>cayenne.xml</code> in CayenneModeler and generate Java classes 
+    		for DataObjects by going to <strong>"Tools -&gt; Generate Classes"</strong> 
+    		and selecting the <strong><code>WEB-INF/classes</code></strong> under the tutorial 
+    		project directory in the opened popup:</p>
+                                                <img src='../../images/modelerguide/generate-classes.jpg' width='520' height='416' align='middle' alt='Generate Classes Dialog'/>
+                                                <p>Click <strong>"Generate"</strong> button. After the generation 
+    		is done, the following files should appear in the 
+    		<code><code>WEB-INF/classes/test</code></code> subdirectory of the 
+    		project directory:
+    		
+    		<ul>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/classes/webtest/_Artist.java">_Artist.java</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/classes/webtest/Artist.java">Artist.java</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/classes/webtest/_Painting.java">_Painting.java</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/classes/webtest/Painting.java">Painting.java</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/classes/webtest/_Gallery.java">_Gallery.java</a></li>
+    			<li><a href="../../tutorials/cayenne-web-app/WEB-INF/classes/webtest/Gallery.java">Gallery.java</a></li>
+    		</ul>
+    		</p>
+                                                                            <a name="6"></a>
+        
+    <strong><br>
+    3.3.6 Compile and Deploy the Application<br>
+    </strong><br>
+                                    <p>Compile the source code like you would normally compile a webapplication.
+    		The example is given for javac from the command line (assuming that JAVA_HOME variable 
+    		points to the JDK 1.3 or 1.4 installation). Substitute <code>[servlet.jar]</code> 
+    		with the path to the actiual JAR file,
+    		for instance tomcat/common/lib/servlet.jar
+    		On Windows:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+cayenne-web-app> cd WEB-INF\classes
+classes> set CLASSPATH=%CLASSPATH%;[servlet.jar] 
+classes> set CLASSPATH=%CLASSPATH%;..\lib\struts.jar;..\lib\cayenne.jar
+classes> %JAVA_HOME%\bin\javac webtest\*.java formbean\*.java action\*.java
+</pre></td>
+  </tr>
+</table>   
+                                                <p>On UNIX:</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+cayenne-web-app# cd WEB-INF/classes
+classes# export CLASSPATH=$CLASSPATH:[servlet.jar]:../lib/struts.jar:../lib/cayenne.jar
+classes# $JAVA_HOME/bin/javac webtest/*.java formbean/*.java action/*.java
+</pre></td>
+  </tr>
+</table>   
+                                                <p>To deploy, simply copy <code>cayenne-web-app</code> directory to Tomcat 
+			<code>webapps</code> directory and restart the Tomcat. URL of the new applications
+			is <a href="http://localhost:8080/cayenne-web-app/">http://localhost:8080/cayenne-web-app/</a>
+			(on containers other then Tomcat, this will be different).
+			</p>
+                                                                    </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../userguide/index.html" class="body-white-small">User Guide  - version 1.1</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../userguide/introduction/index.html" class="body-white-small">1. Introduction</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/install/index.html" class="body-white-small">2. Installation</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/quickstart/index.html" class="body-white-small">3. Quick Start</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../userguide/quickstart/application.html" class="body-white-small">3.1 Cayenne Application</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/quickstart/comline.html" class="body-white-small">3.2 Command-Line Tutorial</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/quickstart/webapp.html" class="body-white-small">3.3 JSP/Struts Tutorial</a>
+<br>
+       		   
+       		          		       		   &nbsp;    <a href="../../userguide/quickstart/tapestrywebapp.html" class="body-white-small">3.4 Tapestry Tutorial</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../userguide/design/index.html" class="body-white-small">4. Design</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/javagen.html" class="body-white-small">5. Generating Classes with Ant</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/datactxt/index.html" class="body-white-small">6. Using DataContext</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/fetch/index.html" class="body-white-small">7. Using Queries</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataobjects/index.html" class="body-white-small">8. Working with DataObjects</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/stored-procedures/index.html" class="body-white-small">9. Using Stored Procedures</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/expressions/index.html" class="body-white-small">10. Using Expressions</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/perform/index.html" class="body-white-small">11. Performance Tuning</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/deploy/index.html" class="body-white-small">12. Deployment</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/dataview/index.html" class="body-white-small">13. DataViews</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../userguide/misc.html" class="body-white-small">14. Miscellaneous Information</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

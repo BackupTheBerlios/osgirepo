@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+        <title>Cayenne 1.1: CDataPort task</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="keywords" content="Object Relational Mapping framework for Java database applications, Java Development, Cayenne, OO-to-Relational mapping, Object-Oriented Software, OpenSource Development, WebObjects, EOF, Enterprise Objects Framework">
+        <meta name="description" content="Cayenne is an object-relational mapping Java framework. It is free and OpenSource, developed under apache license.">
+        <link href="../../images/objectstyle.css" rel="stylesheet">
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000000" alink="#000000" vlink="#000000" 
+      topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<br>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="12%" height="70" align="right" valign="top" background="../../images/778899.gif">
+       <a href="http://objectstyle.org/" target="_new"><img border="0" src="../../images/os_logo.gif" width="160" height="32"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" align="right" background="../../images/cccc99.gif">
+       <a href="http://objectstyle.org/cayenne/" target="_new"><img border="0" src="../../images/cayenne_logo.gif" width="300" height="92"></a>
+    </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" background="../../images/666633.gif"> </td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#778899" height="450" ><table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="right" class="normal">
+                <p>
+    <strong class="body-white">LOCAL DOCS</strong><br>
+               <a href="../../index.html" class="body-white-small">Start</a>
+<br>
+               <a href="../../userguide/index.html" class="body-white-small">User Guide</a>
+<br>
+               <a href="../../modelerguide/index.html" class="body-white-small">Modeler Guide</a>
+<br>
+               <a href="../../examples/index.html" class="body-white-small">Examples</a>
+<br>
+               <a href="../../api/cayenne/index.html" class="body-white-small">Javadoc API</a>
+<br>
+               <a href="../../license.html" class="body-white-small">License</a>
+<br>
+        </p>
+        <p>
+    <strong class="body-white">ONLINE RESOURCES</strong><br>
+               <a href="http://objectstyle.org/cayenne/" class="body-white-small" target="_new">Home</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/download.html" class="body-white-small" target="_new">Download</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/bugs-features.html" class="body-white-small" target="_new">Bugs and Features</a>
+<br>
+               <a href="http://objectstyle.org/cayenne/cayenne-commercial-support.html" class="body-white-small" target="_new">Commercial Support</a>
+<br>
+        </p>
+            </td>
+      </tr>
+    </tbody>
+    </table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top" bgcolor="#cccc99" class="body-black">
+    
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody><tr>
+        <td align="left" valign="top" class="body-black"><strong><font class="normal-red">3. DataPort</font>
+            <img src="../../images/redline.gif" width="100%" height="1"><br></strong><br>
+                                                      
+    <strong><br>
+    3.2 CDataPort Ant Task<br>
+    </strong><br>
+                                    <h3>Description</h3>
+                                                <p>Sometimes it is necessary to recreate a database, copying data
+            from another existing database. For instance, recreating development database 
+            instance from production data, etc. While most RDBMS provide data import/export
+            tools, they normally require advanced DBA skills to use and are most often not
+            portable across database engines. Cayenne will provide a lightweight ant task to 
+			do data porting between the databases with identical schema, using DataMap information.
+            </p>
+                                                <p><code>CDataPort</code> is an Ant task that takes a Cayenne project (cayenne.xml) 
+			with at least one DataMap and two DataNodes and ports data from source DataNode to a 
+			destination DataNode. All DataMaps linked to either the source or the target DataNode will 
+			be considered for porting.
+			</p>
+                                                <h3>Installation</h3>
+                                                <p>Copy cayenne.jar and data-port.jar to $ANT_HOME/lib, or refrence both in the build script
+			classpath for dataport "taskdef". As CDataPort doesn't rely on ObjEntities and works at the DB level, 
+			it doesn't need to access generated DataObject classes.</p>
+                                                <h3>Parameters</h3>
+                                                <table width="100%" border="0" cellspacing="1" cellpadding="3" class="body-black" bgcolor="#999966">
+                        <tr>
+                        <td  bgcolor="#FFFF99" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                <b>Attribute</b>
+        </td>
+                                <td  bgcolor="#FFFF99" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                <b>Description</b>
+        </td>
+                                <td  bgcolor="#FFFF99" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                <b>Required</b>
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                projectFile
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Location of Cayenne project file containing mapping.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Yes
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                maps
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                A comma-separated list of DataMap names within the project, whoose entities 
+					data needs to be ported. If ommitted, all DataMaps in the project will be ported.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                No
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                srcNode
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Source DataNode name.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Yes
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                destNode
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Destination DataNode name.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Yes
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                cleanDest
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                If false, will skip deleting data from the destination tables. True is default.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                No
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                includeTables
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Comma-separated list of tables to
+					include in the port. If ommitted, all mapped DbEntities will be used.
+					It is possible to use "*" to indicate name patterns.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                No
+        </td>
+            </tr>
+                                <tr>
+                        <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                excludeTables
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                Comma-separated list of tables to
+					exclude from the port. If ommitted, all mapped DbEntities will be used.
+					It is possible to use "*" to indicate name patterns.
+        </td>
+                                <td  bgcolor="#FFFFCC" class="body-black" colspan="" rowspan="" valign="top" align="left">
+                No
+        </td>
+            </tr>
+            </table>
+                                                <h3>Examples:</h3>
+                                                <p>Here is an example of using <code>CDataPort</code> to port data using all
+			source DataMaps, excluding DBEntities with name matching "BILL_*":</p>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="7" bgcolor="#FFFFCC"  class="source">
+  <tr>
+    <td class="body-black"><pre>
+&lt;taskdef name="cdataport" classname="org.objectstyle.cayenne.dataport.ant.CayenneDataPort"&gt;
+     &lt;classpath refid="classpath"/&gt;
+&lt;/taskdef&gt;
+&lt;cdataport projectFile="subdir/cayenne.xml" srcNode="ProductionNode" destNode="DevNode" excludeTables="BILL_*"/&gt;
+</pre></td>
+  </tr>
+</table>   
+                                                </td>
+      </tr>
+    </tbody>
+    </table>
+        </td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    
+            <td width="30%" valign="top" bgcolor="#999966"><table width="100%" border="0" cellspacing="10" cellpadding="0">
+      <tbody>
+       	<tr>
+       		<td align="left" class="normal">
+       		       		<strong class="body-white">    <a href="../../examples/index.html" class="body-white-small">Examples</a>
+</strong><br>
+       		<p><strong class="body-white">TABLE OF CONTENTS:</strong></p>
+
+             		<p>
+       		    <a href="../../examples/blog-tapestry/index.html" class="body-white-small">1. Tapestry Blog</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../examples/hr-dataview/index.html" class="body-white-small">2. HRDataView</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../examples/data-port/index.html" class="body-white-small">3. DataPort</a>
+<br>
+       		
+       		       		       		   &nbsp;    <a href="../../examples/data-port/cdataport.html" class="body-white-small">3.1 CDataPort Ant Task</a>
+<br>
+       		   
+       		          		       		</p>
+    	     		<p>
+       		    <a href="../../examples/ejb-facade/index.html" class="body-white-small">4. EJB Facade</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../examples/servlet-filter/index.html" class="body-white-small">5. Servlet Filter</a>
+<br>
+       		
+       		</p>
+    	     		<p>
+       		    <a href="../../examples/aggregate-functions/index.html" class="body-white-small">6. Aggregate Functions</a>
+<br>
+       		
+       		</p>
+    	     	 </td>
+    	 </tr>
+      </tbody>
+    </table>
+    </td>    
+      </tr>  <tr>
+
+    <td width="12%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="1" height="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%" height="1" bgcolor="#333333"><img border="0" src="../../images/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="12%"></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="65%" valign="top"><table width="100%" border="0" cellspacing="10" cellpadding="0" class="body-black">
+      <tbody><tr>
+        <td>Copyright &copy;2001-2004 ObjectStyle Group</td>
+      </tr>
+    </tbody></table></td>
+    <td width="1" bgcolor="#333333"><img src="../../images/spacer.gif" width="1" height="1"></td>
+    <td width="28%"> </td>
+  </tr>
+</tbody></table>
+<br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
