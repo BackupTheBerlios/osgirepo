@@ -1,0 +1,24 @@
+<bundle>
+	<bundle-name>osgi-packageadmin</bundle-name>
+	<bundle-group>osgi</bundle-group>
+	<bundle-version>1.1</bundle-version>
+	<bundle-uuid>osgi:osgi-packageadmin:1.1:</bundle-uuid>
+	<bundle-description>
+		null
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>OSGi Alliance</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/osgi/jars/osgi-packageadmin-1.1.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		null
+	</bundle-sourceurl>
+	<bundle-docurl>
+		null
+	</bundle-docurl>
+	<bundle-category>osgi-service-api</bundle-category>
+	<bundle-checksum>572856d1727d6e6ed9f5c3ac2679e2a3</bundle-checksum>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="org.osgi.service.packageadmin"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
+</bundle>

@@ -1,0 +1,27 @@
+<bundle>
+	<bundle-name>ksoap1-midp-osgi</bundle-name>
+	<bundle-group>kobjects</bundle-group>
+	<bundle-version>1.2</bundle-version>
+	<bundle-uuid>kobjects:ksoap1-midp-osgi:1.2:</bundle-uuid>
+	<bundle-description>
+		kSOAP1-MIDP
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>null</bundle-vendor>
+	<update-location>localhost://C:\Documents and Settings\andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/kobjects/jars/ksoap1-midp-osgi-1.2.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		null
+	</bundle-sourceurl>
+	<bundle-docurl>
+		null
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>aca8122246d411c398faf5a7f6ad4152</bundle-checksum>
+	<export-package package="org.kobjects.serialization"/>
+	<export-package package="org.ksoap"/>
+	<export-package package="org.ksoap.transport"/>
+	<export-package package="org.kxml"/>
+	<export-package package="org.kxml.io"/>
+	<export-package package="org.kxml.parser"/>
+</bundle>

@@ -1,0 +1,25 @@
+<bundle>
+	<bundle-name>jsx-osgi</bundle-name>
+	<bundle-group>jsx</bundle-group>
+	<bundle-version>2.2.3.8</bundle-version>
+	<bundle-uuid>jsx:jsx-osgi:2.2.3.8:</bundle-uuid>
+	<bundle-description>
+		JSX2
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>null</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jsx/jars/jsx-osgi-2.2.3.8.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		null
+	</bundle-sourceurl>
+	<bundle-docurl>
+		null
+	</bundle-docurl>
+	<bundle-category>serialization</bundle-category>
+	<bundle-checksum>aca31aaccdfaea0a32c0eead9482100a</bundle-checksum>
+	<export-package package="JSX"/>
+	<export-package package="JSX.magic"/>
+	<export-package package="JSX.parser"/>
+	<export-package package="JSX.writer"/>
+</bundle>

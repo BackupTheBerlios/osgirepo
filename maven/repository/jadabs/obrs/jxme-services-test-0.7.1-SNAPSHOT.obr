@@ -1,0 +1,48 @@
+<bundle>
+	<bundle-name>jxme-services-test</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-description>
+		JXME-Services Test
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/jxme-services-test-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		unknown
+	</bundle-sourceurl>
+	<bundle-docurl>
+		unknown
+	</bundle-docurl>
+	<bundle-category>General</bundle-category>
+	<bundle-checksum>f9e22c25d0fad1b2179dabf98e1bf4e1</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="ch.ethz.jadabs.jxme.services.test"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.services.test"/>
+	<dependencies>
+		<bundle>
+			<bundle-name>log4j</bundle-name>
+			<bundle-group>log4j</bundle-group>
+			<bundle-version>1.2.8-osgi</bundle-version>
+		</bundle>
+		<bundle>
+			<bundle-name>osgi-framework</bundle-name>
+			<bundle-group>osgi</bundle-group>
+			<bundle-version>1.2</bundle-version>
+		</bundle>
+		<bundle>
+			<bundle-name>jxme-osgi</bundle-name>
+			<bundle-group>jadabs</bundle-group>
+			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+		</bundle>
+		<bundle>
+			<bundle-name>jxme-services-api</bundle-name>
+			<bundle-group>jadabs</bundle-group>
+			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+		</bundle>
+	</dependencies>
+</bundle>

@@ -1,0 +1,23 @@
+<bundle>
+	<bundle-name>kxml2</bundle-name>
+	<bundle-group>kobjects</bundle-group>
+	<bundle-version>2.1.9-osgi</bundle-version>
+	<bundle-uuid>kobjects:kxml2:2.1.9-osgi:</bundle-uuid>
+	<bundle-description>
+		kXML2
+	</bundle-description>
+	<bundle-apivendor>XML</bundle-apivendor>
+	<bundle-vendor>kxml</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/kobjects/jars/kxml2-2.1.9-osgi.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		http://kxml.kobjects.org
+	</bundle-docurl>
+	<bundle-category>Parser</bundle-category>
+	<bundle-checksum>a3c5b37e48e09be6aba79be6dcd5c1b5</bundle-checksum>
+	<export-package package="org.kxml2.io"/>
+	<export-package package="org.xmlpull.v1"/>
+</bundle>
