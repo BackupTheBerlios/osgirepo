@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- 
+/*
+ * 
+ */
+ -->
+
+
+<project name="jadabs">
+
+  <title>Jadabs</title>
+  
+  <body>
+  
+  	<links>
+  		<item name="berliOS" 						href="https://developer.berlios.de/projects/osgirepo"/>
+  		<item name="Maven-OSGi-Plugin" 				href="../../plugins/maven-osgi/"/>
+<!--  		<item name="PDF Documentation" 				href="/jadabs.pdf" img="/images/pdf.gif"/>-->
+  	</links>
+  
+  	<menu name="Overview">
+  		<item name="Goals" 							href="/index.html"/>
+  		<item name="News and Status"				href="/changes-report.html"/>
+  		<item name="Start" 							href="/start/start.html"/>
+  		<item name="User Guide" 					href="/start/start.html"/>
+
+  		<item name="Projects Using Jadabs"			href="/projects/index.html"/>
+  	</menu>
+  	
+	
+	<menu name="Project Admin">
+<!--		<item name="Mailing Lists" 				href="/mail-lists.html"/> -->
+		<item name="Project Team"					href="/team-list.html" />
+		<item name="berliOS Services"				href="https://developer.berlios.de/projects/osgirepo" />
+	</menu>
+
+  </body>
+</project>
+

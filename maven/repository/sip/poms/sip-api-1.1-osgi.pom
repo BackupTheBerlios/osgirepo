@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	
+  	<groupId>sip</groupId>
+  	<artifactId>sip-api</artifactId>
+  	<currentVersion>1.1-osgi</currentVersion>
+	<name>SIP-API</name>
+
+	<shortDescription>SIP-API</shortDescription>
+   
+   	<properties>
+   		<osgi.dynimport.package>gov.nist.*</osgi.dynimport.package>
+   	</properties>
+   
+    <dependencies>
+
+  	</dependencies>
+  
+    <build>
+
+    	<sourceDirectory>${basedir}/src/</sourceDirectory>
+     
+  	</build>
+  
+  
+</project>

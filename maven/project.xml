@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+      <pomVersion>3</pomVersion>
+  
+      <name>osgirepo</name>
+      <artifactId>osgirepo</artifactId>
+      <currentVersion>0.1.0</currentVersion>
+
+ 
+      <organization>
+        <name>BerliOS</name>
+        <url>https://developer.berlios.de</url>
+        <logo>/images/berliOS_logo.png</logo>
+      </organization>
+<!--     
+      <logo>/images/berliOS_small_logo.png</logo>
+--> 
+      
+      <inceptionYear>2004</inceptionYear>
+    
+      <shortDescription>OSGi Repository</shortDescription>
+    
+      <url>http://osgirepo.berlios.de</url>
+
+      <siteAddress>shell.berlios.de</siteAddress>
+      <siteDirectory>
+        /home/groups/osgirepo/htdocs
+      </siteDirectory>
+  
+      <repository>
+        <!--
+        <connection>
+          scm:cvs:ext:afrei@cvs.osgirepo.berlios.de:/cvsroot/osgirepo:osgirepo
+        </connection>
+        -->
+      </repository>
+
+      <developers>
+
+        <developer>
+          <name>Andreas Frei</name>
+          <id>andfrei</id>
+          <email>frei_inf.ethz.ch</email>
+          <roles>
+            <role>Creator</role>
+            <role>Java Developer</role>
+    		<role>Release Manager</role>
+          </roles>
+          <url>http://www.inf.ethz.ch/~frei/</url>
+          <timezone>+1</timezone>
+          <organization>ETHZ</organization>
+        </developer>
+        
+        <developer>
+          <name>Jan S. Rellermeyer</name>
+          <id>rjan</id>
+          <email>jrellermeyer_student.ethz.ch</email>
+          <roles>
+            <role>Jacl Discovery Service</role>
+          </roles>
+          <timezone>+1</timezone>
+          <organization>ETHZ</organization>
+        </developer>
+    
+    </developers>
+
+    <dependencies>
+	
+    </dependencies>
+
+
+  <build>
+
+    <sourceDirectory>${basedir}/src/</sourceDirectory>
+
+    <unitTestSourceDirectory>${basedir}/test/src</unitTestSourceDirectory>
+    
+     <resources>
+     <!--
+     	<resource>
+        	<directory>${eclipse.workspace}/jadabs</directory>
+            <includes>
+                <include>log4j.properties</include>
+            </includes>
+        </resource>
+	 -->
+     </resources>
+     
+  </build>
+  
+  
+</project>

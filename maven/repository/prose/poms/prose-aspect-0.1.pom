@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<extend>${basedir}/../../project.xml</extend>
+
+  <groupId>prose</groupId>
+  <id>prose-aspect</id>
+  <name>Prose-Aspect</name>
+
+  <shortDescription>Prose Aspect</shortDescription>
+
+  <dependencies>
+  
+    	<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-framework</artifactId>
+      		<version>1.2</version>
+      		<url>http://www.osgi.org</url>
+		</dependency>
+		
+		<dependency>
+      		<groupId>prose</groupId>
+      		<artifactId>jdk-prose-loc</artifactId>
+      		<version>1.2.1</version>
+		</dependency>
+		
+		<dependency>
+      		<groupId>prose</groupId>
+      		<artifactId>prose-main</artifactId>
+      		<version>0.1</version>
+		</dependency>
+		
+  </dependencies>
+
+  
+</project>
