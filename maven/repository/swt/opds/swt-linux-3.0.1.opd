@@ -7,6 +7,9 @@
 	provider-name="Eclipse">	
 
 	<Extension-Point
+		id="OSGiContainer/id:osgi" />
+		
+	<Extension-Point
 		id="Property/name:os, value:linux" 
 		description="requires linux running"/>
 

@@ -1,0 +1,7 @@
+MIDlet-Jar-URL: installee.jar
+MIDlet-Jar-Size: 5159
+MIDlet-Name: Installee
+MIDlet-Vendor: Rene Mueller, ETH Zurich
+MIDlet-Version: 0.0.1
+MIDlet-1: Installee, , ch.ethz.j2metest.installee.InstalleeMIDlet
+MIDlet-Push-1: datagram://:5432, ch.ethz.j2metest.installee.InstalleeMIDlet, 127.0.0.1
