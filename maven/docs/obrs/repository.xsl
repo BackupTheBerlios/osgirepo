@@ -31,43 +31,46 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       content    = "{bundles/repository-bundle-name}"/>
 
 <title><xsl:value-of select="bundles/repository-bundle-name"/></title>
-<LINK href="http://www.knopflerfish.org/css/knopflerfish.css" rel="stylesheet" type="text/css"/>
+<LINK href="osgirepo.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
 <body>
+    
+
 <a name="top"></a>
 <table border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="10%">
-      <div style="text-align:left; margin-right: 10px; margin-left: 10px; margin-top:10 px;">
-      <a href="/index.html"><img src="http://www.knopflerfish.org/images/knopflerfish-small.gif" border="0"/></a><br/>
-      <p>
-      <a class="navigation_enabled" href="/index.html">Home</a><br/>
-      <a class="navigation_enabled" href="/components.html">Contents</a><br/>
-      <a class="navigation_enabled" href="/download.html">Download</a><br/>
-      <a class="navigation_enabled" href="/changelog.html">Changelog</a><br/>
-      <a class="navigation_enabled" href="/contacts.html">Contacts</a><br/>
-      <a class="navigation_enabled" href="/programming.html">Programming</a><br/>
-      <a class="navigation_enabled" href="/desktop.html#1">Desktop</a><br/>
-      <a class="navigation_enabled" href="/osgi-links.html">Links</a><br/>
-      <a class="navigation_enabled" href="/history.html">History</a><br/>
-      <a class="navigation_enabled"   href="/svn_info.html">Subversion repository</a><br/>
 
+  <tr>
+      <!--
+    <td width="0%">
+      <div style="text-align:left; margin-right: 10px; margin-left: 10px; margin-top:10 px;">
+      <p>
+      <a class="navigation_enabled" href="/index.html">OSGi-Repository</a><br/>
       </p>
-      <img src="http://www.knopflerfish.org/images/smallfish.gif" border="0"/>
       <br/>
       </div>
     </td>
-    <td width="90%">
+    -->
+    <td width="100%">
       <table class="bodytable">
 	<tr>
 	  <td class="pageheader">
 	    <div style="margin-left: 5px; margin-top: 5px; margin-bottom: 5px;">
 	    <h2><xsl:value-of select="bundles/repository-bundle-name"/></h2>
-	    <div style="font-style: italic; margin-left: 20px; margin-right: 20px; margin-top: 5px; margin-bottom: 5px;">
-	    This is an OBR compatible bundle repository.
+	    
+	    <table>
+	        <tr>
+	        <td>
+	     <div style="font-style: italic;">
+	    
+	    This is an OBR <b>backward</b> compatible bundle repository.
 	    </div>
+	        </td>
+	        <td width="50%">
+    This repository is generated on <xsl:value-of select="bundles/date"/></td>
+	        </tr>
+	    </table>
 	    </div>
 	  </td>
 	</tr>
@@ -79,25 +82,38 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- start -->
 
-<a href="http://www.knopflerfish.org/images/repo_desktop_host.gif"><img src="http://www.knopflerfish.org/images/repo_desktop_host_320.gif" border="0" align="right" alt="Screenshot of the KF bundlerepository, running as a plugin to the desktop"/></a>
+<!--<a href="http://www.knopflerfish.org/images/repo_desktop_host.gif"><img src="http://www.knopflerfish.org/images/repo_desktop_host_320.gif" border="0" align="right" alt="Screenshot of the KF bundlerepository, running as a plugin to the desktop"/></a>
+-->
 <p>
-OBR is a bundle repository format introduced by the <a href="http://oscar-osgi.sourceforge.net/repo/repository.xml">Oscar</a> OSGi project. The format consists
+OBR is a bundle repository format introduced by the 
+<a href="http://oscar-osgi.sourceforge.net/repo/repository.xml">Oscar</a> 
+OSGi project. The format consists
 of an XML file describing all available bundles and an OSGi OBR bundle which
 should be installed on an OSGi framework. When started, this OBR bundle can
 read the XML file, list bundles, and install bundles and their dependencies.
 </p>
 
 <p>
-The repository URL is <a href="http://www.knopflerfish.org/repo/repository.xml">http://www.knopflerfish.org/repo/repository.xml</a>
-
-</p>
-<p>
-This repository is generated on <xsl:value-of select="bundles/date"/>
+The repository URL is <a href="http://osgirepo.berlios.de/repository.xml">
+http://osgirepo.berlios.de/repository.xml</a>
 </p>
 
+<p>
+Further Repositories:
+<ul>
+    <li>OSCAR: <a href="http://oscar-osgi.sourceforge.net/repo/repository.xml">http://oscar-osgi.sourceforge.net/repo/repository.xml</a></li>
+    <li>Knopflerfish: <a href="http://www.knopflerfish.org/repo/repository.xml">http://www.knopflerfish.org/repo/repository.xml</a></li>
+</ul>
+</p>
 
 <p>
-<b>Important</b>: You need either the latest bundlerepository.jar from the Oscar distribution, or the <a href="http://www.knopflerfish.org/repo/jars/bundlerepository/bundlerepository_all-1.1.0.jar">KF bundlerepository</a> bundle. The KF bundlerepository bundle also integrates into the KF desktop and console.
+<b>Important</b>: You need one of the following bundle loaders:
+<ul>
+    <li>Jadabs - comming up</li>
+    <li>OSCAR - bundlerepository.jar</li>
+    <li><a href="http://www.knopflerfish.org/repo/jars/bundlerepository/bundlerepository_all-1.1.0.jar">Knopflerfish - bundlerepository</a> </li>
+</ul>
+
 </p>
 
 <br clear="all"/>
@@ -115,6 +131,8 @@ This repository is generated on <xsl:value-of select="bundles/date"/>
  </tr>
 
  <xsl:for-each select="/bundles/bundle/bundle-apivendor[not(. = preceding::bundle-apivendor)]">
+ 
+ <!--<xsl:for-each select="bundles/bundle">-->
  <xsl:sort select="." order="descending"/>
 
  <tr>
