@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <OSGiServicePlugin 
-	id="org.eclipse.swt" 
-	name="swt-linux"
-	group="swt"
-	version="3.0.1" 
-	description="" provider-name="Eclipse">
-	
+	uuid="swt:swt-linux:3.0.1:opd"
+	service="org.eclipse.swt" 
+	description="" 
+	provider-name="Eclipse">	
 
 	<Extension-Point
-		id="Platform/os/linux" 
+		id="os/type:linux" 
 		description="requires linux running"/>
 
 	<Extension
@@ -17,8 +15,7 @@
 		description="provide swt library"/>
 
 	<ServiceActivatorBundle 
-		bundle-group="swt"
-		bundle-name="swt-linux" 
-		bundle-version="3.0.1-osgi" />
+		activator-uuid="swt:swt-linux:3.0.1-osgi:obr"
+	/>
 		
 </OSGiServicePlugin>

@@ -1,0 +1,28 @@
+<bundle>
+	<bundle-name>jxme-gmpipe-test</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-gmpipe-test:0.7.1-SNAPSHOT:</bundle-uuid>
+	<bundle-description>
+		JXME GMPipe Service - Test
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/rjan/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/rjan/.maven/repository/jadabs/jars/jxme-gmpipe-test-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>test</bundle-category>
+	<bundle-checksum>354288d4573db79a7e239d528e1a5f70</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.services.gmpipe.test"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:0.7.1-SNAPSHOT:</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:0.7.1-SNAPSHOT:</dependency-uuid>
+</bundle>

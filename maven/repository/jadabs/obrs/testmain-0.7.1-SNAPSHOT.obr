@@ -1,0 +1,24 @@
+<bundle>
+	<bundle-name>testmain</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:testmain:0.7.1-SNAPSHOT:</bundle-uuid>
+	<bundle-description>
+		TestMain
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/rjan/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/rjan/.maven/repository/jadabs/jars/testmain-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>01067545f59d7232a28ba0bbb805efdf</bundle-checksum>
+	<import-package package="org.eclipse.swt.widgets"/>
+	<export-package package="test"/>
+	<dependency-uuid>swt:swt:3.0.1-ppc:</dependency-uuid>
+</bundle>

@@ -1,30 +1,24 @@
 <bundle>
 	<bundle-name>remotefw-api</bundle-name>
 	<bundle-group>jadabs</bundle-group>
+	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:remotefw-api:0.7.1-SNAPSHOT:</bundle-uuid>
 	<bundle-description>
 		RemoteFramework API
 	</bundle-description>
 	<bundle-apivendor></bundle-apivendor>
 	<bundle-vendor>ETHZ-IKS</bundle-vendor>
-	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
-	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/remotefw-api-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
+	<update-location>localhost:///home/rjan/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/rjan/.maven/repository/jadabs/jars/remotefw-api-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
 	<bundle-sourceurl>
-		unknown
+		
 	</bundle-sourceurl>
 	<bundle-docurl>
-		unknown
+		
 	</bundle-docurl>
-	<bundle-category>General</bundle-category>
-	<bundle-checksum>81668caccbf6fd065e82ee30db89ff9c</bundle-checksum>
-	<import-package package="ch.ethz.jadabs.remotefw"/>
+	<bundle-category>remotefw</bundle-category>
+	<bundle-checksum>88fc77b93e8139a093d780fe3770263b</bundle-checksum>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="ch.ethz.jadabs.remotefw"/>
-	<dependencies>
-		<bundle>
-			<bundle-name>osgi-framework</bundle-name>
-			<bundle-group>osgi</bundle-group>
-			<bundle-version>1.2</bundle-version>
-		</bundle>
-	</dependencies>
+	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
 </bundle>

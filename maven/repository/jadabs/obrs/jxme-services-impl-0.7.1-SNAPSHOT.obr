@@ -1,48 +1,30 @@
 <bundle>
 	<bundle-name>jxme-services-impl</bundle-name>
 	<bundle-group>jadabs</bundle-group>
+	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-services-impl:0.7.1-SNAPSHOT:</bundle-uuid>
 	<bundle-description>
 		JXME-Services Impl
 	</bundle-description>
 	<bundle-apivendor></bundle-apivendor>
 	<bundle-vendor>ETHZ-IKS</bundle-vendor>
-	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
-	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/jxme-services-impl-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
+	<update-location>localhost:///home/rjan/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/rjan/.maven/repository/jadabs/jars/jxme-services-impl-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
 	<bundle-sourceurl>
-		unknown
+		
 	</bundle-sourceurl>
 	<bundle-docurl>
-		unknown
+		
 	</bundle-docurl>
-	<bundle-category>General</bundle-category>
-	<bundle-checksum>1ab337abc8c0ab3b6ef0073a0b054d51</bundle-checksum>
+	<bundle-category>jxme</bundle-category>
+	<bundle-checksum>d28b987a6ab17265bec51a7f1bee7017</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.jxme"/>
 	<import-package package="ch.ethz.jadabs.jxme.services"/>
-	<import-package package="ch.ethz.jadabs.jxme.services.impl"/>
 	<import-package package="org.apache.log4j"/>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="ch.ethz.jadabs.jxme.services.impl"/>
-	<dependencies>
-		<bundle>
-			<bundle-name>osgi-framework</bundle-name>
-			<bundle-group>osgi</bundle-group>
-			<bundle-version>1.2</bundle-version>
-		</bundle>
-		<bundle>
-			<bundle-name>log4j-cdc</bundle-name>
-			<bundle-group>jadabs</bundle-group>
-			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-		</bundle>
-		<bundle>
-			<bundle-name>jxme-osgi</bundle-name>
-			<bundle-group>jadabs</bundle-group>
-			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-		</bundle>
-		<bundle>
-			<bundle-name>jxme-services-api</bundle-name>
-			<bundle-group>jadabs</bundle-group>
-			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-		</bundle>
-	</dependencies>
+	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
+	<dependency-uuid>jadabs:log4j-cdc:0.7.1-SNAPSHOT:</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:0.7.1-SNAPSHOT:</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:0.7.1-SNAPSHOT:</dependency-uuid>
 </bundle>

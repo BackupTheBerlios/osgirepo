@@ -2,23 +2,20 @@
 <!DOCTYPE OSGiServicePlugin SYSTEM "D:\andfrei-nobkp\workspace\jadabs\docs\spec\dtd\OSGiPluginDescriptor.dtd">
 
 <OSGiServicePlugin 
-	id="ch.ethz.jadabs.maingui" 
-	name="maingui" 
-	group="jadabs"
-	version="0.7.1-SNAPSHOT"
-	description="" provider-name="ETHZ-IKS">
+	uuid="jadabs:maingui:0.7.1-SNAPSHOT:opd"
+	service="ch.ethz.jadabs.maingui" 
+	description="" 
+	provider-name="ETHZ-IKS">
 	
 
 	<Extension-Point 
-		id="Extension/swt" />
+		id="Extension/id:swt" />
 <!--	
 	<Extension 
 		id="GroupService" 
 		service="ch.ethz.jadab.jxme.services.GroupService"/>
 -->
 	<ServiceActivatorBundle 
-		bundle-group="jadabs"
-		bundle-name="jadabs-maingui" 
-		bundle-version="0.7.1-SNAPSHOT" />
-		
+		activator-uuid="jadabs:jadabs-maingui:0.7.1-SNAPSHOT"
+	/>		
 </OSGiServicePlugin>

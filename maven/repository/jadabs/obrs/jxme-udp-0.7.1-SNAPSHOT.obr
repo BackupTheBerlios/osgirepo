@@ -1,48 +1,30 @@
 <bundle>
 	<bundle-name>jxme-udp</bundle-name>
 	<bundle-group>jadabs</bundle-group>
+	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-udp:0.7.1-SNAPSHOT:</bundle-uuid>
 	<bundle-description>
 		Jadabs-JXME transport UDP
 	</bundle-description>
 	<bundle-apivendor></bundle-apivendor>
 	<bundle-vendor>ETHZ-IKS</bundle-vendor>
-	<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
-	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/jxme-udp-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
+	<update-location>localhost:///home/rjan/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/rjan/.maven/repository/jadabs/jars/jxme-udp-0.7.1-SNAPSHOT.jar</bundle-updatelocation>
 	<bundle-sourceurl>
-		unknown
+		
 	</bundle-sourceurl>
 	<bundle-docurl>
-		unknown
+		
 	</bundle-docurl>
-	<bundle-category>General</bundle-category>
-	<bundle-checksum>53ffe69038fb4beef2868f3387b70807</bundle-checksum>
+	<bundle-category>jxme</bundle-category>
+	<bundle-checksum>428b0642a01c90a56461f658f44312ad</bundle-checksum>
 	<import-package package="ch.ethz.jadabs.concurrent"/>
 	<import-package package="ch.ethz.jadabs.jxme"/>
-	<import-package package="ch.ethz.jadabs.jxme.udp"/>
 	<import-package package="org.apache.log4j"/>
 	<import-package package="org.osgi.framework"/>
 	<export-package package="ch.ethz.jadabs.jxme.udp"/>
-	<dependencies>
-		<bundle>
-			<bundle-name>log4j-cdc</bundle-name>
-			<bundle-group>jadabs</bundle-group>
-			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-		</bundle>
-		<bundle>
-			<bundle-name>osgi-framework</bundle-name>
-			<bundle-group>osgi</bundle-group>
-			<bundle-version>1.2</bundle-version>
-		</bundle>
-		<bundle>
-			<bundle-name>jxme-osgi</bundle-name>
-			<bundle-group>jadabs</bundle-group>
-			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-		</bundle>
-		<bundle>
-			<bundle-name>concurrent</bundle-name>
-			<bundle-group>jadabs</bundle-group>
-			<bundle-version>0.7.1-SNAPSHOT</bundle-version>
-		</bundle>
-	</dependencies>
+	<dependency-uuid>jadabs:log4j-cdc:0.7.1-SNAPSHOT:</dependency-uuid>
+	<dependency-uuid>osgi:osgi-framework:1.2:</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:0.7.1-SNAPSHOT:</dependency-uuid>
+	<dependency-uuid>jadabs:concurrent:0.7.1-SNAPSHOT:</dependency-uuid>
 </bundle>
