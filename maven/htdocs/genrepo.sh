@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# usage: genrepo.sh <dir> 
+
 DIR=../repository
 
 if [ -n "$1" ]; then DIR=$1; fi
