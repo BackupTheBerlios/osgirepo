@@ -1,0 +1,24 @@
+<project default="jar:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+   <pregoal name="jar:jar">
+	  <!-- unpack the jsx.jar into the target/classes directory -->
+   	  <ant:unjar src="${basedir}/jsx/freeJSX1.0.7.5.jar" 
+			    dest="${maven.build.dir}/classes"/>
+
+	  <!-- now back files back into jar again 
+      <ant:delete dir="${maven.build.dir}/classes/META-INF"/>-->
+
+   </pregoal>
+
+</project>

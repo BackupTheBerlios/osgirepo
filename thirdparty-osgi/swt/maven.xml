@@ -40,12 +40,12 @@
    <goal name="osgi:swt-linux">
    
       <!-- <attainGoal name="java:compile"/> -->
-      <ant:unjar src="${basedir}/swt-3.0RC1-linux-osgi/swt.jar" dest="${maven.build.dir}/classes"/>
-      <ant:unjar src="${basedir}/swt-3.0RC1-linux-osgi/swt-pi.jar" dest="${maven.build.dir}/classes"/>
-      <ant:unjar src="${basedir}/swt-3.0RC1-linux-osgi/swt-mozilla.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/swt-3.0.1-linux/swt.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/swt-3.0.1-linux/swt-pi.jar" dest="${maven.build.dir}/classes"/>
+      <ant:unjar src="${basedir}/swt-3.0.1-linux/swt-mozilla.jar" dest="${maven.build.dir}/classes"/>
       
       <ant:copy todir="${maven.build.dir}/classes/os">
-         <ant:fileset dir="${basedir}/swt-3.0RC1-linux-osgi/os" 
+         <ant:fileset dir="${basedir}/swt-3.0.1-linux/os" 
 				 includes="**" />
       </ant:copy>
       

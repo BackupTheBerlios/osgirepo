@@ -1,0 +1,24 @@
+<project default="osgi:install" 
+	xmlns:maven="jelly:maven"
+	xmlns:jar="jelly:jar"
+	xmlns:ant="jelly:ant">
+
+
+   <!--==================================================================-->
+   <!-- Properties                                                       -->
+   <!--==================================================================-->
+  	   
+   <!--==================================================================-->
+   <!-- Build goals                                                      -->
+   <!--==================================================================-->
+   <pregoal name="jar:jar">
+	  <!-- unpack the log4j-1.2.8.jar into the target/classes directory -->
+   	  <ant:unjar src="${basedir}/midp-2.0/midpapi20.jar" 
+			    dest="${maven.build.dir}/classes"/>
+
+	  <!-- now back files back into jar again -->
+      <ant:delete dir="${maven.build.dir}/classes/META-INF"/>
+
+   </pregoal>
+
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+	<!--<extend>${basedir}/../../project.xml</extend> -->
+
+	
+  	<groupId>j2me</groupId>
+  	<artifactId>midpapi</artifactId>
+  	<currentVersion>2.0</currentVersion>
+
+	<name>MIDP-API</name>
+
+	<shortDescription>MIDP-API</shortDescription>
+
+<!--
+  <properties>
+	<osgi.bundle.category>service</osgi.bundle.category> 
+    <osgi.import.package>org.osgi.framework</osgi.import.package>
+  </properties>
+-->
+  
+   <dependencies>
+        
+  </dependencies>
+  
+</project>
