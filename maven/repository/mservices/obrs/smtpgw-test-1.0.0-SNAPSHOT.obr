@@ -1,0 +1,29 @@
+<bundle>
+	<bundle-name>smtpgw-test</bundle-name>
+	<bundle-group>mservices</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>mservices:smtpgw-test:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		MobileServices-SMTPGateway Test
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/mservices/jars/smtpgw-test-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>mservices-test</bundle-category>
+	<bundle-checksum>79ffe21b9a683ae6b956e7c7c69bd2d2</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.mservices.smtpgw"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.mservices.smtpgw.test"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>mservices:smtpgw:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>log4j:log4j:1.2.8-osgi:obr</dependency-uuid>
+</bundle>

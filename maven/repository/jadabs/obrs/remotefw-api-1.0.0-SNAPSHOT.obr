@@ -1,0 +1,24 @@
+<bundle>
+	<bundle-name>remotefw-api</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:remotefw-api:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		RemoteFramework API
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/remotefw-api-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>remotefw</bundle-category>
+	<bundle-checksum>2fef45eb35a762820f3a27ad1274c448</bundle-checksum>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.remotefw"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+</bundle>

@@ -1,0 +1,25 @@
+<bundle>
+	<bundle-name>benchmark</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:benchmark:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Benchmark Service
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/benchmark-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>d0e42385c4ae5e4604de4fa8fb26d30b</bundle-checksum>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.iks.benchmark"/>
+	<export-package package="ch.ethz.iks.bunit"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+</bundle>

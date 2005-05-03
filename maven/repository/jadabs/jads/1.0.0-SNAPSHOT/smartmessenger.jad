@@ -1,0 +1,11 @@
+MIDlet-Jar-URL: smartmessenger.jar
+MIDlet-Jar-Size: 78546
+MIDlet-Name: Smart Messenger
+MIDlet-Vendor: Andreas Frei, Rene Mueller, ETH Zurich
+MIDlet-Version: 1.0.0
+MIDlet-1: Smart SMS, , ch.ethz.jadabs.smartmessenger.SmartMessengerMIDlet
+ch.ethz.jadabs.jxme.peeralias: Nokia6600
+log4j.priority: DEBUG
+ch.ethz.jadabs.jxme.bt.rendezvouspeer: false
+ch.ethz.jadabs.mservices.smsgateway.emailsuffix: sms.switch.ch
+ch.ethz.jadabs.mservices.smsgateway.senderaddress: frei@inf.ethz.ch

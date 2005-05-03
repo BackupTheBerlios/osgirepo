@@ -1,0 +1,27 @@
+<bundle>
+	<bundle-name>jxme-osgi-j2me</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-osgi-j2me:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		JXME-OSGi J2ME
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/jxme-osgi-j2me-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>76560c08b88ab6bfab9c0e8bfdcc7b5b</bundle-checksum>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme"/>
+	<dependency-uuid>osgi:osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:log4j-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>j2me:midpapi:2.0:obr</dependency-uuid>
+</bundle>

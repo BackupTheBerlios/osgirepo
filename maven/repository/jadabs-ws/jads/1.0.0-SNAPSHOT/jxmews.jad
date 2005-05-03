@@ -1,0 +1,10 @@
+MIDlet-Jar-URL: jxmews.jar
+MIDlet-Jar-Size: 79146
+MIDlet-Name: JXMEWS
+MIDlet-Vendor: A.Frei
+MIDlet-Version: 1.0.0
+MIDlet-1: JXME-WS, , ch.ethz.jadabs.jxmews.JxmeWSMIDlet
+ch.ethz.jadabs.jxme.peeralias: Nokia6600
+log4j.priority: DEBUG
+ch.ethz.jadabs.microservices.bundleport: 5435
+MIDlet-Push-1: socket://:5435, ch.ethz.jadabs.jxmews.JxmeWSMIDlet, 127.0.0.1

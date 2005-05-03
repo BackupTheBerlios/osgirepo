@@ -1,0 +1,30 @@
+<bundle>
+	<bundle-name>jxme-tcp-test</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-tcp-test:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Jadabs-JXME transport TCP Test
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/jxme-tcp-test-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>jxme-test</bundle-category>
+	<bundle-checksum>17b968520692f60dadd290594716e5e5</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="junit.framework"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.tcp.test"/>
+	<dependency-uuid>junit:junit:3.8.1:obr</dependency-uuid>
+	<dependency-uuid>log4j:log4j:1.2.8-osgi:obr</dependency-uuid>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

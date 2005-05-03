@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+
+	<extend>${basedir}/../../../project.xml</extend>
+
+	<groupId>jadabs</groupId>
+	<artifactId>jxme-tcp</artifactId>
+	<name>JXME-TCP</name>
+
+	<shortDescription>JXME transport TCP</shortDescription>
+
+	<properties>
+		<osgi.bundle.category>jxme</osgi.bundle.category>
+	</properties>
+	
+  	<dependencies>
+  	
+    	<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-framework</artifactId>
+      		<version>1.2</version>
+		</dependency>
+    	
+    	<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>jxme-osgi</artifactId>
+      		<version>${pom.currentVersion}</version>
+		</dependency>
+      
+      <dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>log4j-cdc</artifactId>
+      		<version>${pom.currentVersion}</version>
+      		<properties>
+				<obr.dynamic>true</obr.dynamic>
+			</properties>
+		</dependency>
+		
+  	</dependencies>
+
+  
+</project>

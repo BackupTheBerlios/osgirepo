@@ -1,0 +1,31 @@
+<bundle>
+	<bundle-name>jxme-services-j2me</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-services-j2me:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		JXME-Services J2ME
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/jxme-services-j2me-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>2193cfc5c51d1fc31ff5e5775dc95574</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.services.impl"/>
+	<dependency-uuid>j2me:midpapi:2.0:obr</dependency-uuid>
+	<dependency-uuid>osgi:osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:log4j-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

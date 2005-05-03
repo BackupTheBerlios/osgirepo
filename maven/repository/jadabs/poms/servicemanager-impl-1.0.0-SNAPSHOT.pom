@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+
+	<extend>${basedir}/../../../project.xml</extend>
+
+      <organization>
+        <name>ETHZ-IKS</name>
+        <url>http://www.iks.inf.ethz.ch</url>
+        <logo>/images/logo_ethz_iks.jpg</logo>
+      </organization>
+      
+	<groupId>jadabs</groupId>
+	<artifactId>servicemanager-impl</artifactId>
+	<name>ServiceManager Impl</name>
+	
+	<shortDescription>ServiceManager Implementation</shortDescription>
+
+	<properties>
+		<!-- for normal osgi bundles -->
+		<osgi.export.service>ch.ethz.jadabs.servicemanager.ServiceManager</osgi.export.service>
+		<osgi.bundle.category>jxme</osgi.bundle.category>
+		
+		<!-- for eclipse osgi plugins -->
+		<eclipse.bundle.symbolicname>ch.ethz.jadabs.servicemanager</eclipse.bundle.symbolicname>
+		<eclipse.require.bundle>org.eclipse.osgi,ch.ethz.jadabs.bundleloader,ch.ethz.jadabs.pluginloader</eclipse.require.bundle>
+		<eclipse.autostart>true</eclipse.autostart>
+		<eclipse.bundle.activator>ch.ethz.jadabs.servicemanager.impl.ServiceManagerActivator</eclipse.bundle.activator>
+		<eclipse.export.service>ch.ethz.jadabs.servicemanager.ServiceManager</eclipse.export.service>
+		<eclipse.export.package>ch.ethz.jadabs.servicemanager,ch.ethz.jadabs.servicemanager.impl</eclipse.export.package>
+		<eclipse.import.package>org.apache.log4j,org.osgi.framework,ch.ethz.jadabs.jxme,ch.ethz.jadabs.jxme.services,ch.ethz.jadabs.bundleloader,ch.ethz.jadabs.pluginloader</eclipse.import.package>
+	</properties>
+
+  	<dependencies>
+  	
+    	<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-framework</artifactId>
+      		<version>1.2</version>
+		</dependency>		
+		
+		<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>servicemanager</artifactId>
+      		<version>${pom.currentVersion}</version>
+			<properties>
+	      		<eclipse.plugin.include>true</eclipse.plugin.include>  
+	      	</properties>      		
+		</dependency>
+				
+    	<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>log4j-cdc</artifactId>
+      		<version>${pom.currentVersion}</version>
+      		<properties>
+				<obr.dynamic>true</obr.dynamic>
+			</properties>
+		</dependency>	
+		
+		<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>bundleloader</artifactId>
+      		<version>${pom.currentVersion}</version>    		
+		</dependency>						
+
+    	<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>jxme-osgi</artifactId>
+      		<version>${pom.currentVersion}</version>
+		</dependency>	
+			
+    	<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>jxme-services-api</artifactId>
+      		<version>${pom.currentVersion}</version>
+		</dependency>				
+
+    	<dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>pluginloader</artifactId>
+      		<version>${pom.currentVersion}</version>
+		</dependency>	
+						
+  	</dependencies>
+
+  <reports>
+  	<report>maven-javadoc-plugin</report>
+  </reports>
+
+
+</project>

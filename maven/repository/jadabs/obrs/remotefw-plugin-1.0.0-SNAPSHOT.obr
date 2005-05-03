@@ -1,0 +1,30 @@
+<bundle>
+	<bundle-name>remotefw-plugin</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:remotefw-plugin:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Shell Plugin to control remote peers
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/remotefw-plugin-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>5ff9ffbaba6a611844e516ca0787e14f</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.remotefw"/>
+	<import-package package="ch.ethz.jadabs.shell"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.shell.plugin"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:remotefw-api:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:remotefw-impl:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jadabs-shell:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

@@ -1,0 +1,116 @@
+<bundle>
+	<bundle-name>axis-all</bundle-name>
+	<bundle-group>axis</bundle-group>
+	<bundle-version>1.2alpha-osgi</bundle-version>
+	<bundle-uuid>axis:axis-all:1.2alpha-osgi:obr</bundle-uuid>
+	<bundle-description>
+		Axis-all for OSGi
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>null</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/axis/jars/axis-all-1.2alpha-osgi.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>f37d73b608c6b6ea5e047036c1db7231</bundle-checksum>
+	<import-package package="org.apache.commons.discovery.resource.classes"/>
+	<export-package package="com.ibm.wsdl"/>
+	<export-package package="com.ibm.wsdl.extensions"/>
+	<export-package package="com.ibm.wsdl.extensions.http"/>
+	<export-package package="com.ibm.wsdl.extensions.mime"/>
+	<export-package package="com.ibm.wsdl.extensions.soap"/>
+	<export-package package="com.ibm.wsdl.factory"/>
+	<export-package package="com.ibm.wsdl.util"/>
+	<export-package package="com.ibm.wsdl.util.xml"/>
+	<export-package package="com.ibm.wsdl.xml"/>
+	<export-package package="javax.wsdl"/>
+	<export-package package="javax.wsdl.extensions"/>
+	<export-package package="javax.wsdl.extensions.http"/>
+	<export-package package="javax.wsdl.extensions.mime"/>
+	<export-package package="javax.wsdl.extensions.soap"/>
+	<export-package package="javax.wsdl.factory"/>
+	<export-package package="javax.wsdl.xml"/>
+	<export-package package="javax.xml.messaging"/>
+	<export-package package="javax.xml.namespace"/>
+	<export-package package="javax.xml.rpc"/>
+	<export-package package="javax.xml.rpc.encoding"/>
+	<export-package package="javax.xml.rpc.handler"/>
+	<export-package package="javax.xml.rpc.handler.soap"/>
+	<export-package package="javax.xml.rpc.holders"/>
+	<export-package package="javax.xml.rpc.server"/>
+	<export-package package="javax.xml.rpc.soap"/>
+	<export-package package="javax.xml.soap"/>
+	<export-package package="javax.xml.transform"/>
+	<export-package package="javax.xml.transform.dom"/>
+	<export-package package="javax.xml.transform.sax"/>
+	<export-package package="javax.xml.transform.stream"/>
+	<export-package package="org.apache.axis"/>
+	<export-package package="org.apache.axis.attachments"/>
+	<export-package package="org.apache.axis.client"/>
+	<export-package package="org.apache.axis.collections"/>
+	<export-package package="org.apache.axis.components.compiler"/>
+	<export-package package="org.apache.axis.components.encoding"/>
+	<export-package package="org.apache.axis.components.image"/>
+	<export-package package="org.apache.axis.components.jms"/>
+	<export-package package="org.apache.axis.components.logger"/>
+	<export-package package="org.apache.axis.components.net"/>
+	<export-package package="org.apache.axis.components.script"/>
+	<export-package package="org.apache.axis.components.threadpool"/>
+	<export-package package="org.apache.axis.components.uuid"/>
+	<export-package package="org.apache.axis.configuration"/>
+	<export-package package="org.apache.axis.deployment.wsdd"/>
+	<export-package package="org.apache.axis.deployment.wsdd.providers"/>
+	<export-package package="org.apache.axis.description"/>
+	<export-package package="org.apache.axis.encoding"/>
+	<export-package package="org.apache.axis.encoding.ser"/>
+	<export-package package="org.apache.axis.enum"/>
+	<export-package package="org.apache.axis.handlers"/>
+	<export-package package="org.apache.axis.handlers.http"/>
+	<export-package package="org.apache.axis.handlers.soap"/>
+	<export-package package="org.apache.axis.holders"/>
+	<export-package package="org.apache.axis.i18n"/>
+	<export-package package="org.apache.axis.management"/>
+	<export-package package="org.apache.axis.message"/>
+	<export-package package="org.apache.axis.monitor"/>
+	<export-package package="org.apache.axis.providers"/>
+	<export-package package="org.apache.axis.providers.java"/>
+	<export-package package="org.apache.axis.schema"/>
+	<export-package package="org.apache.axis.security"/>
+	<export-package package="org.apache.axis.security.servlet"/>
+	<export-package package="org.apache.axis.security.simple"/>
+	<export-package package="org.apache.axis.server"/>
+	<export-package package="org.apache.axis.session"/>
+	<export-package package="org.apache.axis.soap"/>
+	<export-package package="org.apache.axis.strategies"/>
+	<export-package package="org.apache.axis.transport.http"/>
+	<export-package package="org.apache.axis.transport.java"/>
+	<export-package package="org.apache.axis.transport.jms"/>
+	<export-package package="org.apache.axis.transport.local"/>
+	<export-package package="org.apache.axis.types"/>
+	<export-package package="org.apache.axis.utils"/>
+	<export-package package="org.apache.axis.utils.bytecode"/>
+	<export-package package="org.apache.axis.utils.cache"/>
+	<export-package package="org.apache.axis.wsdl"/>
+	<export-package package="org.apache.axis.wsdl.fromJava"/>
+	<export-package package="org.apache.axis.wsdl.gen"/>
+	<export-package package="org.apache.axis.wsdl.symbolTable"/>
+	<export-package package="org.apache.axis.wsdl.toJava"/>
+	<export-package package="org.apache.commons.discovery"/>
+	<export-package package="org.apache.commons.discovery.ant"/>
+	<export-package package="org.apache.commons.discovery.jdk"/>
+	<export-package package="org.apache.commons.discovery.log"/>
+	<export-package package="org.apache.commons.discovery.resource"/>
+	<export-package package="org.apache.commons.discovery.resource.names"/>
+	<export-package package="org.apache.commons.discovery.tools"/>
+	<export-package package="org.apache.commons.logging"/>
+	<export-package package="org.apache.commons.logging.impl"/>
+	<export-package package="org.apache.xml.xml_soap"/>
+	<export-package package="org.globus.test.bigType"/>
+	<export-package package="org.globus.test.otherTypes"/>
+	<export-package package="org.soapinterop"/>
+</bundle>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+
+  	
+  	<groupId>java</groupId>
+  	<artifactId>javamail-all</artifactId>
+  	<currentVersion>1.3.1-osgi</currentVersion>
+
+	<name>JavaMail-All</name>
+	<shortDescription>Javamail in One</shortDescription>
+  
+    <organization>
+        <name>Sun</name>
+        <url></url>
+      </organization>
+  
+  	<properties>
+  		<obr.bundle.docurl>www.sun.org</obr.bundle.docurl>
+  		<obr.bundle.apivendor>SUN</obr.bundle.apivendor>
+  		<osgi.bundle.vendor>Sun</osgi.bundle.vendor>
+  		<osgi.bundle.category>library</osgi.bundle.category>
+  	</properties>
+  
+	<dependencies>
+        
+  	</dependencies>
+  
+     <build>
+<!--
+    	<sourceDirectory>${basedir}/src/</sourceDirectory>
+-->     
+  	</build>
+  	
+</project>

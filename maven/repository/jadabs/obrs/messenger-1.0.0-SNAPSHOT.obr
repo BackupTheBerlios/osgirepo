@@ -1,0 +1,27 @@
+<bundle>
+	<bundle-name>messenger</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:messenger:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Messenger
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/messenger-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>mservices</bundle-category>
+	<bundle-checksum>395aef054c1d1a72009aa2407e2e700e</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="org.apache.log4j"/>
+	<export-package package="ch.ethz.jadabs.jxme.im"/>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

@@ -1,0 +1,42 @@
+<bundle>
+	<bundle-name>servicemanager-micro</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:servicemanager-micro:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Service-Manager Micro
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/servicemanager-micro-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>f4d92abe1306d70d539abc4ee7e983de</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.jxme.microservices"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="ch.ethz.jadabs.servicemanager"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.kxml2.io"/>
+	<import-package package="org.osgi.framework"/>
+	<import-package package="org.xmlpull.v1"/>
+	<export-package package="ch.ethz.jadabs.servicemanager.micro"/>
+	<dependency-uuid>jadabs:microservices-core:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:local-wiring:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>j2me:midpapi:2.0:obr</dependency-uuid>
+	<dependency-uuid>osgi:osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:log4j-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:servicemanager:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-tcp-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>kobjects:kxml2-min:2.1.9-osgi:obr</dependency-uuid>
+	<dependency-uuid>impronto:idev_bluez:1.3-osgi:obr</dependency-uuid>
+</bundle>

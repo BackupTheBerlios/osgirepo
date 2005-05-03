@@ -1,0 +1,34 @@
+<bundle>
+	<bundle-name>smsservice</bundle-name>
+	<bundle-group>mservices</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>mservices:smsservice:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		MobileServices-SMSService
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/mservices/jars/smsservice-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>42f50a0b28effcd497cd0bb41deda68d</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="javax.microedition.io"/>
+	<import-package package="javax.wireless.messaging"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.mservices.smsservice"/>
+	<dependency-uuid>osgi:osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:log4j-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>j2me:wma:1.1:obr</dependency-uuid>
+	<dependency-uuid>j2me:midpapi:2.0:obr</dependency-uuid>
+	<dependency-uuid>j2me:cldcapi:1.0:obr</dependency-uuid>
+	<dependency-uuid>impronto:idev_bluez:1.3-osgi:obr</dependency-uuid>
+</bundle>

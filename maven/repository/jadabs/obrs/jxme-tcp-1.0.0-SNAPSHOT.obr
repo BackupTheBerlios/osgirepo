@@ -1,0 +1,27 @@
+<bundle>
+	<bundle-name>jxme-tcp</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-tcp:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		JXME transport TCP
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/jxme-tcp-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>jxme</bundle-category>
+	<bundle-checksum>45a012ad69a4870f06424178881180df</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.tcp"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

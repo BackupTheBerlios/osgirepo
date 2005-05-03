@@ -1,0 +1,33 @@
+<bundle>
+	<bundle-name>jadabs-core-groupservice-test</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jadabs-core-groupservice-test:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Jadabs-Core Test Component for GroupService
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/jadabs-core-groupservice-test-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>cb05a3424a7b7af13e4feb9924ad3a2d</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.services.groupservice.test"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-impl:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-tcp:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>log4j:log4j:1.2.8-osgi:obr</dependency-uuid>
+	<dependency-uuid>impronto:idev_bluez:1.3-osgi:obr</dependency-uuid>
+</bundle>

@@ -10,7 +10,7 @@
 		id="OSGiContainer/id:osgi" />
 		
 	<Extension-Point
-		id="Property/name:os, value:linux" 
+		id="Property/name:os, value:i386" 
 		description="requires linux running"/>
 
 	<Extension

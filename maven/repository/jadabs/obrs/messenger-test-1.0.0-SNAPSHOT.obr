@@ -1,0 +1,28 @@
+<bundle>
+	<bundle-name>messenger-test</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:messenger-test:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Messenger-Test
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/messenger-test-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>mservices-test</bundle-category>
+	<bundle-checksum>4601a57f77fbcbd67e7f57b6a54a98e1</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme.im"/>
+	<import-package package="ch.ethz.jadabs.jxme.services"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.im.test"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-services-api:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:messenger:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

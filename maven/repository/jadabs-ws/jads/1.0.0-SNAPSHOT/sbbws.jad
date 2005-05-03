@@ -1,0 +1,10 @@
+MIDlet-Jar-URL: sbbws.jar
+MIDlet-Jar-Size: 147603
+MIDlet-Name: SBBWS
+MIDlet-Vendor: Stefan Vogt, Franz Maier
+MIDlet-Version: 1.0.0
+MIDlet-1: SBBWS, , ch.ethz.jadabs.sbbws.midlet.SBBMIDlet
+ch.ethz.jadabs.jxme.peeralias: Nokia6600
+log4j.priority: DEBUG
+ch.ethz.jadabs.microservices.bundleport: 1234
+MIDlet-Push-1: socket://:1234, ch.ethz.jadabs.sbbws.midlet.SBBMIDlet, 127.0.0.1

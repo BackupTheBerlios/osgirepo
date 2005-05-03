@@ -1,0 +1,33 @@
+<bundle>
+	<bundle-name>jxme-bt-j2me</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-bt-j2me:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Jadabs-JXME transport Bluetooth
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/jxme-bt-j2me-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>42edc4f869bb7fb0237ff8b6b4895d95</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<import-package package="javax.bluetooth"/>
+	<import-package package="javax.microedition.io"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.jxme.bt"/>
+	<dependency-uuid>osgi:osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:log4j-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>j2me:midpapi:2.0:obr</dependency-uuid>
+	<dependency-uuid>j2me:btapi:1.0:obr</dependency-uuid>
+	<dependency-uuid>impronto:idev_bluez:1.3-osgi:obr</dependency-uuid>
+</bundle>

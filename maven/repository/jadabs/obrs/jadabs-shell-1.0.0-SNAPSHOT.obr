@@ -1,0 +1,27 @@
+<bundle>
+	<bundle-name>jadabs-shell</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jadabs-shell:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Command line shell for handling jadabs.
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/jadabs-shell-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>shell</bundle-category>
+	<bundle-checksum>34c90d6d9f91a98979cfa054ace9fb04</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.bundleLoader.api"/>
+	<import-package package="org.apache.log4j"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="ch.ethz.jadabs.shell"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:bundleloader:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OSGiServicePlugin
+	uuid="jadabs:plugin-loader:1.0.0-SNAPSHOT:opd"
+	service="ch.ethz.jadabs.jxme.udp"
+	description=""
+	provider-name="ETHZ-IKS">
+	
+	<Extension-Point
+		id="OSGiContainer/id:osgi" />
+    
+    <ServiceActivatorBundle
+	activator-uuid="jadabs:pluginloader-test:1.0.0-SNAPSHOT:obr"
+    />
+
+</OSGiServicePlugin>

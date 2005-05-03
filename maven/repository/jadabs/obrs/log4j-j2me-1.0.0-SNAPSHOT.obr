@@ -1,0 +1,27 @@
+<bundle>
+	<bundle-name>log4j-j2me</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:log4j-j2me:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		Jadabs-Log4J J2ME
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>http://osgirepo.berlios.de/maven/repository/jadabs/jars/log4j-j2me-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>general</bundle-category>
+	<bundle-checksum>17a033b05deb410f95d8e62fceec37bc</bundle-checksum>
+	<import-package package="javax.microedition.lcdui"/>
+	<import-package package="org.osgi.framework"/>
+	<export-package package="org.apache.log4j"/>
+	<dependency-uuid>osgi:osgi-j2me:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>j2me:midpapi:2.0:obr</dependency-uuid>
+	<dependency-uuid>impronto:idev_bluez:1.3-osgi:obr</dependency-uuid>
+</bundle>

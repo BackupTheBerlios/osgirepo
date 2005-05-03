@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+
+	<extend>${basedir}/../../../project.xml</extend>
+
+      <organization>
+        <name>ETHZ-IKS</name>
+        <url>http://www.iks.inf.ethz.ch</url>
+        <logo>/images/logo_ethz_iks.jpg</logo>
+      </organization>
+      
+	<groupId>jadabs</groupId>
+	<artifactId>servicemanager</artifactId>
+	<name>ServiceManager</name>
+	
+	<shortDescription>ServiceManager</shortDescription>
+
+	<properties>
+		<!-- for normal osgi bundles -->
+		<osgi.export.service>ch.ethz.jadabs.servicemanager.ServiceManager</osgi.export.service>
+		<osgi.bundle.category>jxme</osgi.bundle.category>
+		
+		<!-- for eclipse osgi plugins 
+		<eclipse.bundle.symbolicname>ch.ethz.jadabs.jxme</eclipse.bundle.symbolicname>
+		<eclipse.require.bundle>org.eclipse.osgi</eclipse.require.bundle>
+		<eclipse.autostart>true</eclipse.autostart>
+		<eclipse.bundle.activator>ch.ethz.jadabs.jxme.JxmeActivator</eclipse.bundle.activator>
+		<eclipse.export.service>ch.ethz.jadabs.jxme.PeerNetwork,ch.ethz.jadabs.jxme.EndpointService</eclipse.export.service>
+		<eclipse.export.package>org.apache.log4j,ch.ethz.jadabs.jxme</eclipse.export.package>
+		<eclipse.import.package>org.osgi.framework</eclipse.import.package>
+		-->
+	</properties>
+
+  	<dependencies>
+  	
+  	    <dependency>
+      		<groupId>jadabs</groupId>
+      		<artifactId>jxme-osgi</artifactId>
+      		<version>${pom.currentVersion}</version>
+		</dependency>
+  	
+    	<dependency>
+      		<groupId>osgi</groupId>
+      		<artifactId>osgi-framework</artifactId>
+      		<version>1.2</version>
+		</dependency>		
+				
+  	</dependencies>
+
+  <reports>
+  	<report>maven-javadoc-plugin</report>
+  </reports>
+
+
+</project>

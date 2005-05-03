@@ -1,0 +1,13 @@
+MIDlet-Jar-URL: jadabs-manager.jar
+MIDlet-Jar-Size: 104292
+MIDlet-Name: JadabsMgr
+MIDlet-Vendor: Andreas Frei, Rene Mueller, ETH Zurich
+MIDlet-Version: 1.0.0
+MIDlet-1: JadabsMgr, , ch.ethz.jadabs.core.JadabsCoreMIDlet
+ch.ethz.jadabs.jxme.peeralias: peer1
+ch.ethz.jadabs.jxme.tcp.port: 9001
+ch.ethz.jadabs.jxme.seedURIs: tcp://129.132.177.93:9002
+log4j.priority: DEBUG
+ch.ethz.jadabs.jxme.hostname: peer1
+ch.ethz.jadabs.jxme.bt.rendezvouspeer: false
+MIDlet-Push-1: datagram://:4444, ch.ethz.jadabs.core.JadabsCoreMIDlet, 127.0.0.1

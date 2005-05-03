@@ -1,0 +1,24 @@
+<bundle>
+	<bundle-name>servicemanager</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:servicemanager:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		ServiceManager
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/servicemanager-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>jxme</bundle-category>
+	<bundle-checksum>3c96e24b25ac01b0f5c6636d0ed9225a</bundle-checksum>
+	<export-package package="ch.ethz.jadabs.servicemanager"/>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+</bundle>

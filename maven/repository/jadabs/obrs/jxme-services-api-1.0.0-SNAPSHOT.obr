@@ -1,0 +1,25 @@
+<bundle>
+	<bundle-name>jxme-services-api</bundle-name>
+	<bundle-group>jadabs</bundle-group>
+	<bundle-version>1.0.0-SNAPSHOT</bundle-version>
+	<bundle-uuid>jadabs:jxme-services-api:1.0.0-SNAPSHOT:obr</bundle-uuid>
+	<bundle-description>
+		JXME-Services API
+	</bundle-description>
+	<bundle-apivendor></bundle-apivendor>
+	<bundle-vendor>ETHZ-IKS</bundle-vendor>
+	<update-location>localhost:///home/andfrei/.maven/repository</update-location>
+	<bundle-updatelocation>file:///home/andfrei/.maven/repository/jadabs/jars/jxme-services-api-1.0.0-SNAPSHOT.jar</bundle-updatelocation>
+	<bundle-sourceurl>
+		
+	</bundle-sourceurl>
+	<bundle-docurl>
+		
+	</bundle-docurl>
+	<bundle-category>jxme</bundle-category>
+	<bundle-checksum>6b545aa2af7c3111daf5a8699a7ac675</bundle-checksum>
+	<import-package package="ch.ethz.jadabs.jxme"/>
+	<export-package package="ch.ethz.jadabs.jxme.services"/>
+	<dependency-uuid>osgi:osgi-framework:1.2:obr</dependency-uuid>
+	<dependency-uuid>jadabs:jxme-osgi:1.0.0-SNAPSHOT:obr</dependency-uuid>
+</bundle>

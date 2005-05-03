@@ -7,8 +7,9 @@
 	provider-name="ETHZ-IKS">
 	
 	<Property
-            midp-port="5432" 
-	    downloadurl="http://wlab.ethz.ch/maven/repository" />   
+            name="midp-port" value="5432" />     
+    <Property
+    	    name="downloadurl" value="http://wlab.ethz.ch/maven/repository"/>   
 	
 	<Extension-Point
 		id="OSGiContainer/id:j2me-osgi" />
@@ -16,7 +17,11 @@
 	<Extension-Point 
 		id="NetIface/type:bt-jsr82" 
 		service="requires a bt-interface"/>
-		
+<!--
+	<Extension 
+		id="GroupService" 
+		service="ch.ethz.jadab.jxme.services.GroupService"/>
+-->		
 	<ServiceActivatorBundle 
 		activator-uuid="jadabs-cldc:installee:0.0.1:jad"
 	/>	

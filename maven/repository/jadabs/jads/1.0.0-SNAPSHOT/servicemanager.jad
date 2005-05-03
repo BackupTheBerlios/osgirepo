@@ -1,0 +1,12 @@
+MIDlet-Jar-URL: servicemanager.jar
+MIDlet-Jar-Size: 148227
+MIDlet-Name: JadabsMgr
+MIDlet-Vendor: Andreas Frei, Rene Mueller, ETH Zurich
+MIDlet-Version: 1.0.0
+MIDlet-1: JadabsMgr, , ch.ethz.jadabs.servicemanager.micro.ui.ServiceManagerMIDlet
+ch.ethz.jadabs.jxme.peeralias: nokia6600
+ch.ethz.jadabs.jxme.tcp.port: 9001
+ch.ethz.jadabs.jxme.seedURIs: tcp://127.0.0.1:9002
+log4j.priority: DEBUG
+ch.ethz.jadabs.jxme.bt.rendezvouspeer: false
+MIDlet-Push-1: datagram://:4444, ch.ethz.jadabs.servicemanager.micro.ui.ServiceManagerMIDlet, 127.0.0.1
